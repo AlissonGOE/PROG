@@ -1,0 +1,1232 @@
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.9
+Comprimento: 3.0
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.2
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.9
+Comprimento: 3.0
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.7
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.9
+Comprimento: 3.0
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.9
+Comprimento: 3.0
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 3.0
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 3.0
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 3.0
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 3.0
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 2
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 2
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 2
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.3
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 10.6
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 3.0
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.9
+Comprimento: 3.0
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.3
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.5
+Comprimento: 1.6
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.7
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.9
+Comprimento: 3.0
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.8
+Comprimento: 2.9
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
+
+Velocidade: 11.1
+Comprimento: 3.5
+Eixos: 9
+
+Velocidade: 19.6
+Comprimento: 1.7
+Eixos: 2
+
+Velocidade: 18.9
+Comprimento: 3.0
+Eixos: 3
+
+Velocidade: 11.4
+Comprimento: 1.5
+Eixos: 5
+
+Velocidade: 11.4
+Comprimento: 3.1
+Eixos: 7
