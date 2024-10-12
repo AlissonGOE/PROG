@@ -119,16 +119,16 @@ int main() {
         i++;
     }
 
-    fprintf(resultado, "\n2 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f FALHA MAX: %d FALHA VMIN: %d TOTAL DE VEICULOS: %d\n", eixo[2].eixovmax, eixo[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
-    fprintf(resultado, "2 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f FALHA MAX: %d FALHA VMIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin);
-    fprintf(resultado, "\n3 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f FALHA MAX: %d FALHA VMIN: %d TOTAL DE VEICULOS: %d\n", eixo[3].eixovmax, eixo[3].eixovmin, erro[3].exvmaxfalha, erro[3].exvminfalha, total3);
-    fprintf(resultado, "3 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f FALHA MAX: %d FALHA VMIN: %d\n", comprim[3].eixocmax, comprim[3].eixocmin);
-    fprintf(resultado, "\n5 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f FALHA MAX: %d FALHA VMIN: %d TOTAL DE VEICULOS: %d\n", eixo[5].eixovmax, eixo[5].eixovmin, erro[5].exvmaxfalha, erro[5].exvminfalha, total5);
-    fprintf(resultado, "5 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f FALHA MAX: %d FALHA VMIN: %d\n", comprim[5].eixocmax, comprim[5].eixocmin);
-    fprintf(resultado, "\n7 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f FALHA MAX: %d FALHA VMIN: %d TOTAL DE VEICULOS: %d\n", eixo[7].eixovmax, eixo[7].eixovmin, erro[7].exvmaxfalha, erro[7].exvminfalha, total7);
-    fprintf(resultado, "7 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f FALHA MAX: %d FALHA VMIN: %d\n", comprim[7].eixocmax, comprim[7].eixocmin);
-    fprintf(resultado, "\n9 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f FALHA MAX: %d FALHA VMIN: %d TOTAL DE VEICULOS: %d\n", eixo[9].eixovmax, eixo[9].eixovmin, erro[9].exvmaxfalha, erro[9].exvminfalha, total9);
-    fprintf(resultado, "9 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f FALHA MAX: %d FALHA VMIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin);
+    fprintf(resultado, "\n2 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[2].eixovmax, eixo[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
+    fprintf(resultado, "2 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin);
+    fprintf(resultado, "\n3 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[3].eixovmax, eixo[3].eixovmin, erro[3].exvmaxfalha, erro[3].exvminfalha, total3);
+    fprintf(resultado, "3 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[3].eixocmax, comprim[3].eixocmin);
+    fprintf(resultado, "\n5 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[5].eixovmax, eixo[5].eixovmin, erro[5].exvmaxfalha, erro[5].exvminfalha, total5);
+    fprintf(resultado, "5 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[5].eixocmax, comprim[5].eixocmin);
+    fprintf(resultado, "\n7 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[7].eixovmax, eixo[7].eixovmin, erro[7].exvmaxfalha, erro[7].exvminfalha, total7);
+    fprintf(resultado, "7 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[7].eixocmax, comprim[7].eixocmin);
+    fprintf(resultado, "\n9 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[9].eixovmax, eixo[9].eixovmin, erro[9].exvmaxfalha, erro[9].exvminfalha, total9);
+    fprintf(resultado, "9 EIXOS- COMPRIMENTO MAX:     %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin);
 
     fclose(arquivo);
     fclose(resultado);
