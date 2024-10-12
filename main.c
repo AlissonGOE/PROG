@@ -2,251 +2,125 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct veiculo{
+struct veiculo {
     float velocidade;
     float comprimento;
     int eixos;
 };
 
-// Define um buffer para armazenar cada linha
-char linha[1024];
+struct deltaeixo {
+    float eixovmax;
+    float eixovmin;
+};
+
+struct deltacomprimento {
+    float eixocmax;
+    float eixocmin;
+};
+
+char linha[1024];  // Define um buffer para armazenar cada linha
 const char delimitador[] = ";";
 struct veiculo veiculos[500];
-int i = 0;
+struct deltaeixo eixo[9];
+struct deltacomprimento comprim[9];
+int i = 0;  // contadores
 
-float eixo2vmax = 0,
-      eixo2vmin = 200.0,
-      eixo3vmax = 0,
-      eixo3vmin = 200.0,
-      eixo5vmax = 0,
-      eixo5vmin = 200.0,
-      eixo7vmax = 0,
-      eixo7vmin = 200.0,
-      eixo9vmax = 0,
-      eixo9vmin = 200.0,
-      eixo2cmax = 0,
-      eixo2cmin = 200.0,
-      eixo3cmax = 0,
-      eixo3cmin = 200.0,
-      eixo5cmax = 0,
-      eixo5cmin = 200.0,
-      eixo7cmax = 0,
-      eixo7cmin = 200.0,
-      eixo9cmax = 0,
-      eixo9cmin = 200.0;
-
-void velo(void); 
+void velo(void);
 void compri(void);
 
 int main() {
-    // Abre o arquivo em modo de leitura
     FILE *arquivo = fopen("dados.txt", "r");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         return 1;
-    }
-    else{
+    } else {
         printf("\nArquivo dados.txt aberto com sucesso!!\n");
     }
-
     FILE *resultado = fopen("resultado.txt", "w");
     if (resultado == NULL) {
         printf("Erro ao abrir o arquivo de resultado.\n");
         fclose(arquivo);
         return 1;
-    }
-    else{
+    } else {
         printf("Arquivo resultado.txt aberto com sucesso!!\n");
     }
 
-    // Lê o arquivo linha por linha
+    // Inicializar os valores mínimos com um valor alto
+    eixo[2].eixovmin = 200.0;
+    eixo[3].eixovmin = 200.0;
+    eixo[5].eixovmin = 200.0;
+    eixo[7].eixovmin = 200.0;
+    eixo[9].eixovmin = 200.0;
+    
+    comprim[2].eixocmin = 200.0;
+    comprim[3].eixocmin = 200.0;
+    comprim[5].eixocmin = 200.0;
+    comprim[7].eixocmin = 200.0;
+    comprim[9].eixocmin = 200.0;
+
+
     while (fgets(linha, sizeof(linha), arquivo)) {
         linha[strcspn(linha, "\n")] = 0;
-
         char *campo = strtok(linha, delimitador);
         int coluna = 0;
-
         printf("\n");
-        //fprintf(resultado, "\n");
-        while (campo != NULL){
 
-            if(coluna == 3){
-                float val = strtof(campo, NULL);
-                veiculos[i].velocidade = val;
+        while (campo != NULL) {
+            if (coluna == 3) {
+                veiculos[i].velocidade = strtof(campo, NULL);
                 printf("Velocidade = %.1f\n", veiculos[i].velocidade);
-            }
-            else if (coluna == 4){
-                float val1 = strtof(campo, NULL);
-                veiculos[i].comprimento = val1;
+            } else if (coluna == 4) {
+                veiculos[i].comprimento = strtof(campo, NULL);
                 printf("Comprimento = %.1f\n", veiculos[i].comprimento);
-            }
-            else if (coluna == 6){
-                int val2 = atoi(campo);
-                veiculos[i].eixos = val2;
+            } else if (coluna == 6) {
+                veiculos[i].eixos = atoi(campo);
                 printf("Eixos = %d\n", veiculos[i].eixos);
             }
-            
-            velo();
-            compri();
             campo = strtok(NULL, delimitador);
-            coluna++;    
-             
+            coluna++;
         }
-        //fprintf(resultado, "Velocidade: %.1f\nComprimento: %.1f\nEixos: %d\n", veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].eixos);
-        
-        i++;  
 
+        velo();
+        compri();
+        i++;
     }
-    fprintf(resultado, "2 EIXOS, VELOCIDADE MAX: %.1f,  VELOCIDADE MIN: %.1f\n", eixo2vmax, eixo2vmin);
-    fprintf(resultado, "2 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", eixo2cmax, eixo2cmin);
-    fprintf(resultado, "\n3 EIXOS, VELOCIDADE MAX: %.1f,  VELOCIDADE MIN: %.1f\n", eixo3vmax, eixo3vmin);
-    fprintf(resultado, "3 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", eixo3cmax, eixo3cmin);
-    fprintf(resultado, "\n5 EIXOS, VELOCIDADE MAX: %.1f,  VELOCIDADE MIN: %.1f\n", eixo5vmax, eixo5vmin);
-    fprintf(resultado, "5 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", eixo5cmax, eixo5cmin);
-    fprintf(resultado, "\n7 EIXOS, VELOCIDADE MAX: %.1f,  VELOCIDADE MIN: %.1f\n", eixo7vmax, eixo7vmin);
-    fprintf(resultado, "7 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", eixo7cmax, eixo7cmin);
-    fprintf(resultado, "\n9 EIXOS, VELOCIDADE MAX: %.1f,  VELOCIDADE MIN: %.1f\n", eixo9vmax, eixo9vmin);
-    fprintf(resultado, "9 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", eixo9cmax, eixo9cmin);
 
+    fprintf(resultado, "2 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f\n", eixo[2].eixovmax, eixo[2].eixovmin);
+    fprintf(resultado, "2 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", comprim[2].eixocmax, comprim[2].eixocmin);
+    fprintf(resultado, "\n3 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f\n", eixo[3].eixovmax, eixo[3].eixovmin);
+    fprintf(resultado, "3 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", comprim[3].eixocmax, comprim[3].eixocmin);
+    fprintf(resultado, "\n5 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f\n", eixo[5].eixovmax, eixo[5].eixovmin);
+    fprintf(resultado, "5 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", comprim[5].eixocmax, comprim[5].eixocmin);
+    fprintf(resultado, "\n7 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f\n", eixo[7].eixovmax, eixo[7].eixovmin);
+    fprintf(resultado, "7 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", comprim[7].eixocmax, comprim[7].eixocmin);
+    fprintf(resultado, "\n9 EIXOS, VELOCIDADE MAX: %.1f, VELOCIDADE MIN: %.1f\n", eixo[9].eixovmax, eixo[9].eixovmin);
+    fprintf(resultado, "9 EIXOS, COMPRIMENTO MAX: %.1f, COMPRIMENTO MIN: %.1f\n", comprim[9].eixocmax, comprim[9].eixocmin);
 
     fclose(arquivo);
     fclose(resultado);
-
     return 0;
 }
 
-void velo(void){
-    if(veiculos[i].eixos == 2){
-        if(veiculos[i].velocidade >= eixo2vmax){
-            eixo2vmax = veiculos[i].velocidade;
-            if(eixo2vmin == 200.0){
-                eixo2vmin = veiculos[i].velocidade;
-            }
+void velo(void) {
+    int eixos = veiculos[i].eixos;
+    if (eixos == 2 || eixos == 3 || eixos == 5 || eixos == 7 || eixos == 9) {
+        if (veiculos[i].velocidade >= eixo[eixos].eixovmax) {
+            eixo[eixos].eixovmax = veiculos[i].velocidade;
         }
-        else{            
-            if(veiculos[i].velocidade <= eixo2vmin){
-                eixo2vmin = veiculos[i].velocidade;
-            }
-        }
-    }
-    else if(veiculos[i].eixos == 3){
-        if(veiculos[i].velocidade >= eixo3vmax){
-            eixo3vmax = veiculos[i].velocidade;
-            if(eixo3vmin == 200.0){
-                eixo3vmin = veiculos[i].velocidade;
-            }
-        }
-        else{            
-            if(veiculos[i].velocidade <= eixo3vmin){
-                eixo3vmin = veiculos[i].velocidade;
-            }
-        }
-    }
-    else if(veiculos[i].eixos == 5){
-        if(veiculos[i].velocidade >= eixo5vmax){
-            eixo5vmax = veiculos[i].velocidade;
-            if(eixo5vmin == 200.0){
-                eixo5vmin = veiculos[i].velocidade;
-            }
-        }
-        else{            
-            if(veiculos[i].velocidade <= eixo5vmin){
-                eixo5vmin = veiculos[i].velocidade;
-            }
-        }
-    }
-    else if(veiculos[i].eixos == 7){
-        if(veiculos[i].velocidade >= eixo7vmax){
-            eixo7vmax = veiculos[i].velocidade;
-            if(eixo7vmin == 200.0){
-                eixo7vmin = veiculos[i].velocidade;
-            }
-        }
-        else{            
-            if(veiculos[i].velocidade <= eixo7vmin){
-                eixo7vmin = veiculos[i].velocidade;
-            }
-        }
-    }
-    else if(veiculos[i].eixos == 9){
-        if(veiculos[i].velocidade >= eixo9vmax){
-            eixo9vmax = veiculos[i].velocidade;
-            if(eixo9vmin == 200.0){
-                eixo9vmin = veiculos[i].velocidade;
-            }
-        }
-        else{            
-            if(veiculos[i].velocidade <= eixo9vmin){
-                eixo9vmin = veiculos[i].velocidade;
-            }
+        if (veiculos[i].velocidade <= eixo[eixos].eixovmin) {
+            eixo[eixos].eixovmin = veiculos[i].velocidade;
         }
     }
 }
 
-void compri(void){
-    if(veiculos[i].eixos == 2){
-        if(veiculos[i].comprimento >= eixo2cmax){
-            eixo2cmax = veiculos[i].comprimento;
-            if(eixo2cmin == 200.0){
-                eixo2cmin = veiculos[i].comprimento;
-            }
+void compri(void) {
+    int eixos = veiculos[i].eixos;
+    if (eixos == 2 || eixos == 3 || eixos == 5 || eixos == 7 || eixos == 9) {
+        if (veiculos[i].comprimento >= comprim[eixos].eixocmax) {
+            comprim[eixos].eixocmax = veiculos[i].comprimento;
         }
-        else{            
-            if(veiculos[i].comprimento <= eixo2cmin){
-                eixo2cmin = veiculos[i].comprimento;
-            }
+        if (veiculos[i].comprimento <= comprim[eixos].eixocmin) {
+            comprim[eixos].eixocmin = veiculos[i].comprimento;
         }
     }
-    else if(veiculos[i].eixos == 3){
-        if(veiculos[i].comprimento >= eixo3cmax){
-            eixo3cmax = veiculos[i].comprimento;
-            if(eixo3cmin == 200.0){
-                eixo3cmin = veiculos[i].comprimento;
-            }
-        }
-        else{            
-            if(veiculos[i].comprimento <= eixo3cmin){
-                eixo3cmin = veiculos[i].comprimento;
-            }
-        }
-    }
-    else if(veiculos[i].eixos == 5){
-        if(veiculos[i].comprimento >= eixo5cmax){
-            eixo5cmax = veiculos[i].comprimento;
-            if(eixo5cmin == 200.0){
-                eixo5cmin = veiculos[i].comprimento;
-            }
-        }
-        else{            
-            if(veiculos[i].comprimento <= eixo5cmin){
-                eixo5cmin = veiculos[i].comprimento;
-            }
-        }
-    }
-    else if(veiculos[i].eixos == 7){
-        if(veiculos[i].comprimento >= eixo7cmax){
-            eixo7cmax = veiculos[i].comprimento;
-            if(eixo7cmin == 200.0){
-                eixo7cmin = veiculos[i].comprimento;
-            }
-        }
-        else{            
-            if(veiculos[i].comprimento <= eixo7cmin){
-                eixo7cmin = veiculos[i].comprimento;
-            }
-        }
-    }
-    else if(veiculos[i].eixos == 9){
-        if(veiculos[i].comprimento >= eixo9cmax){
-            eixo9cmax = veiculos[i].comprimento;
-            if(eixo9cmin == 200.0){
-                eixo9cmin = veiculos[i].comprimento;
-            }
-        }
-        else{            
-            if(veiculos[i].comprimento <= eixo9cmin){
-                eixo9cmin = veiculos[i].comprimento;
-            }
-        }
-    }  
 }
