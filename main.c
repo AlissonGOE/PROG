@@ -60,7 +60,7 @@ float eixo2vmax = 19.6,
 
 void velo(void);
 void compri(void);
-void compreslt(void);
+void veloreslt(void);
 
 int main() {
     FILE *arquivo = fopen("dados.txt", "r");
@@ -140,11 +140,11 @@ void velo(void) {
     if (eixos == 2 || eixos == 3 || eixos == 5 || eixos == 7 || eixos == 9) {
         if (veiculos[i].velocidade >= eixo[eixos].eixovmax) {
             eixo[eixos].eixovmax = veiculos[i].velocidade;
-            compreslt();
+            veloreslt();
         }
         if (veiculos[i].velocidade <= eixo[eixos].eixovmin) {
             eixo[eixos].eixovmin = veiculos[i].velocidade;
-            compreslt();
+            veloreslt();
         }
         if(eixos == 2){
             total2++;
@@ -177,7 +177,7 @@ void compri(void) {
     }
 }
 
-void compreslt(void){
+void veloreslt(void){
 
     int eixos = veiculos[i].eixos;
     if (eixos == 2) {
