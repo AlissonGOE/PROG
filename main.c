@@ -44,7 +44,7 @@ int total2 = 0,
 
 
 float eixo2vmax = 19.6,
-      eixo2vmin = 12.1,
+      eixo2vmin = 11.1,
 
       eixo3vmax = 18.9,
       eixo3vmin = 18.7,
@@ -58,9 +58,25 @@ float eixo2vmax = 19.6,
       eixo9vmax = 11.1,
       eixo9vmin = 11.1;
 
+float eixo2cmax = 1.7,
+      eixo2cmin = 1.0,
+
+      eixo3cmax = 3.0,
+      eixo3cmin = 1.0,
+
+      eixo5cmax = 1.5,
+      eixo5cmin = 1.0,
+
+      eixo7cmax = 3.1,
+      eixo7cmin = 1.0,
+
+      eixo9cmax = 3.5,
+      eixo9cmin = 1.0;
+
 void velo(void);
 void compri(void);
 void veloreslt(void);
+void comprireslt(void);
 
 int main() {
     FILE *arquivo = fopen("dados.txt", "r");
@@ -119,16 +135,16 @@ int main() {
         i++;
     }
 
-    fprintf(resultado, "\n2 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[2].eixovmax, eixo[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
-    fprintf(resultado, "2 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin);
-    fprintf(resultado, "\n3 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[3].eixovmax, eixo[3].eixovmin, erro[3].exvmaxfalha, erro[3].exvminfalha, total3);
-    fprintf(resultado, "3 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[3].eixocmax, comprim[3].eixocmin);
-    fprintf(resultado, "\n5 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[5].eixovmax, eixo[5].eixovmin, erro[5].exvmaxfalha, erro[5].exvminfalha, total5);
-    fprintf(resultado, "5 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[5].eixocmax, comprim[5].eixocmin);
-    fprintf(resultado, "\n7 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[7].eixovmax, eixo[7].eixovmin, erro[7].exvmaxfalha, erro[7].exvminfalha, total7);
-    fprintf(resultado, "7 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[7].eixocmax, comprim[7].eixocmin);
-    fprintf(resultado, "\n9 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA MAX: %d - FALHA VMIN: %d - TOTAL DE VEICULOS: %d\n", eixo[9].eixovmax, eixo[9].eixovmin, erro[9].exvmaxfalha, erro[9].exvminfalha, total9);
-    fprintf(resultado, "9 EIXOS- COMPRIMENTO MAX:     %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA MAX: %d - FALHA VMIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin);
+    fprintf(resultado, "\n2 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", eixo[2].eixovmax, eixo[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
+    fprintf(resultado, "2 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin, erro[2].excmaxfalha, erro[2].excminfalha);
+    fprintf(resultado, "\n3 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", eixo[3].eixovmax, eixo[3].eixovmin, erro[3].exvmaxfalha, erro[3].exvminfalha, total3);
+    fprintf(resultado, "3 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[3].eixocmax, comprim[3].eixocmin, erro[3].excmaxfalha, erro[3].excminfalha);
+    fprintf(resultado, "\n5 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", eixo[5].eixovmax, eixo[5].eixovmin, erro[5].exvmaxfalha, erro[5].exvminfalha, total5);
+    fprintf(resultado, "5 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[5].eixocmax, comprim[5].eixocmin, erro[5].excmaxfalha, erro[5].excminfalha);
+    fprintf(resultado, "\n7 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", eixo[7].eixovmax, eixo[7].eixovmin, erro[7].exvmaxfalha, erro[7].exvminfalha, total7);
+    fprintf(resultado, "7 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[7].eixocmax, comprim[7].eixocmin, erro[7].excmaxfalha, erro[7].excminfalha);
+    fprintf(resultado, "\n9 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", eixo[9].eixovmax, eixo[9].eixovmin, erro[9].exvmaxfalha, erro[9].exvminfalha, total9);
+    fprintf(resultado, "9 EIXOS- COMPRIMENTO MAX:     %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin, erro[9].excmaxfalha, erro[9].excminfalha);
 
     fclose(arquivo);
     fclose(resultado);
@@ -152,7 +168,7 @@ void velo(void) {
         if(eixos == 3){
             total3++;
         }
-        if(eixos == 3){
+        if(eixos == 5){
             total5++;
         }
         if(eixos == 7){
@@ -170,9 +186,11 @@ void compri(void) {
     if (eixos == 2 || eixos == 3 || eixos == 5 || eixos == 7 || eixos == 9) {
         if (veiculos[i].comprimento >= comprim[eixos].eixocmax) {
             comprim[eixos].eixocmax = veiculos[i].comprimento;
+            comprireslt();
         }
         if (veiculos[i].comprimento <= comprim[eixos].eixocmin) {
             comprim[eixos].eixocmin = veiculos[i].comprimento;
+            comprireslt();
         }
     }
 }
@@ -222,6 +240,54 @@ void veloreslt(void){
         }
         if(eixo[eixos].eixovmin < eixo9vmin){
             erro[9].exvminfalha++;
+        }
+    }
+}
+
+void comprireslt(void){
+    int eixos = veiculos[i].eixos;
+    if (eixos == 2) {
+        if(comprim[eixos].eixocmax > eixo2cmax){
+            erro[2].excmaxfalha++;
+        }
+        if(comprim[eixos].eixocmin < eixo2cmin){
+            erro[2].excminfalha++;
+        }
+    }
+
+    if (eixos == 3) {
+        if(comprim[eixos].eixocmax > eixo3cmax){
+            erro[3].excmaxfalha++;
+        }
+        if(comprim[eixos].eixocmin < eixo3cmin){
+            erro[3].excminfalha++;
+        }
+    }
+
+    if (eixos == 5) {
+        if(comprim[eixos].eixocmax > eixo5cmax){
+            erro[5].excmaxfalha++;
+        }
+        if(comprim[eixos].eixocmin < eixo5cmin){
+            erro[5].excminfalha++;
+        }
+    }
+
+    if (eixos == 7) {
+        if(comprim[eixos].eixocmax > eixo7cmax){
+            erro[7].excmaxfalha++;
+        }
+        if(comprim[eixos].eixocmin < eixo7cmin){
+            erro[7].excminfalha++;
+        }
+    }
+
+    if (eixos == 9) {
+        if(comprim[eixos].eixocmax > eixo9cmax){
+            erro[9].excmaxfalha++;
+        }
+        if(comprim[eixos].eixocmin < eixo9cmin){
+            erro[9].excminfalha++;
         }
     }
 }
