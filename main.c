@@ -184,10 +184,10 @@ void compri(void) {
 void veloreslt(void) {
     int eixos = veiculos[i].eixos;
     if (eixos >= 2 && eixos <= 9 && (eixos % 2 == 1 || eixos == 2)) {
-        if (eixo[eixos].eixovmax > vmax[eixos]) {
+        if (veiculos[eixos].velocidade > vmax[eixos]) {
             erro[eixos].exvmaxfalha++;
         }
-        if(eixo[eixos].eixovmin < vmin[eixos]) {
+        if(veiculos[eixos].velocidade < vmin[eixos]) {
             erro[eixos].exvminfalha++;
         }
     }
