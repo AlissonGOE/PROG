@@ -118,16 +118,16 @@ int main() {
 
     }
 
-    fprintf(resultado, "\n2 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[2].eixovmax, veloci[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
-    fprintf(resultado, "2 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin, erro[2].excmaxfalha, erro[2].excminfalha);
-    fprintf(resultado, "\n3 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[3].eixovmax, veloci[3].eixovmin, erro[3].exvmaxfalha, erro[3].exvminfalha, total3);
-    fprintf(resultado, "3 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[3].eixocmax, comprim[3].eixocmin, erro[3].excmaxfalha, erro[3].excminfalha);
-    fprintf(resultado, "\n5 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[5].eixovmax, veloci[5].eixovmin, erro[5].exvmaxfalha, erro[5].exvminfalha, total5);
-    fprintf(resultado, "5 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[5].eixocmax, comprim[5].eixocmin, erro[5].excmaxfalha, erro[5].excminfalha);
-    fprintf(resultado, "\n7 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[7].eixovmax, veloci[7].eixovmin, erro[7].exvmaxfalha, erro[7].exvminfalha, total7);
-    fprintf(resultado, "7 EIXOS - COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[7].eixocmax, comprim[7].eixocmin, erro[7].excmaxfalha, erro[7].excminfalha);
-    fprintf(resultado, "\n9 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN: %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[9].eixovmax, veloci[9].eixovmin, erro[9].exvmaxfalha, erro[9].exvminfalha, total9);
-    fprintf(resultado, "9 EIXOS- COMPRIMENTO MAX:     %.1f m - COMPRIMENTO MIN:    %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin, erro[9].excmaxfalha, erro[9].excminfalha);
+    fprintf(resultado, "\n2 EIXOS - VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f  Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[2].eixovmax, veloci[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
+    fprintf(resultado, "2 EIXOS -  COMPRIMENTO MAX:  %.1f m  - COMPRIMENTO MIN:      %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin, erro[2].excmaxfalha, erro[2].excminfalha);
+    fprintf(resultado, "\n3 EIXOS - VELOCIDADE MAX:  %.1f Km/h - VELOCIDADE MIN: %.1f  Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[3].eixovmax, veloci[3].eixovmin, erro[3].exvmaxfalha, erro[3].exvminfalha, total3);
+    fprintf(resultado, "3 EIXOS -  COMPRIMENTO MAX:  %.1f m  - COMPRIMENTO MIN:    %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[3].eixocmax, comprim[3].eixocmin, erro[3].excmaxfalha, erro[3].excminfalha);
+    fprintf(resultado, "\n5 EIXOS - VELOCIDADE MAX:  %.1f Km/h - VELOCIDADE MIN: %.1f  Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[5].eixovmax, veloci[5].eixovmin, erro[5].exvmaxfalha, erro[5].exvminfalha, total5);
+    fprintf(resultado, "5 EIXOS -  COMPRIMENTO MAX:  %.1f m  - COMPRIMENTO MIN:    %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[5].eixocmax, comprim[5].eixocmin, erro[5].excmaxfalha, erro[5].excminfalha);
+    fprintf(resultado, "\n7 EIXOS - VELOCIDADE MAX:  %.1f Km/h - VELOCIDADE MIN: %.1f  Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[7].eixovmax, veloci[7].eixovmin, erro[7].exvmaxfalha, erro[7].exvminfalha, total7);
+    fprintf(resultado, "7 EIXOS -  COMPRIMENTO MAX:  %.1f m  - COMPRIMENTO MIN:    %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[7].eixocmax, comprim[7].eixocmin, erro[7].excmaxfalha, erro[7].excminfalha);
+    fprintf(resultado, "\n9 EIXOS - VELOCIDADE MAX:  %.1f Km/h - VELOCIDADE MIN: %.1f  Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[9].eixovmax, veloci[9].eixovmin, erro[9].exvmaxfalha, erro[9].exvminfalha, total9);
+    fprintf(resultado, "9 EIXOS -  COMPRIMENTO MAX:  %.1f m  - COMPRIMENTO MIN:    %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin, erro[9].excmaxfalha, erro[9].excminfalha);
 
     fclose(arquivo);
     fclose(resultado);
@@ -138,10 +138,16 @@ void velo(void) {
     int eixos1 = veiculos[i].eixos;
     if (eixos1 == 2 || eixos1 == 3 || eixos1 == 5 || eixos1 == 7 || eixos1 == 9) {
         if (veiculos[i].velocidade >= veloci[eixos1].eixovmax) {
-            veloci[eixos1].eixovmax = veiculos[i].velocidade;            
+            veloci[eixos1].eixovmax = veiculos[i].velocidade;
+            if(veloci[eixos1].eixovmax > vmax[eixos1]){
+                erro[eixos1].exvmaxfalha++;
+            }            
         }
         if (veiculos[i].velocidade <= veloci[eixos1].eixovmin) {
             veloci[eixos1].eixovmin = veiculos[i].velocidade;
+            if(veloci[eixos1].eixovmin < vmin[eixos1]){
+                erro[eixos1].exvminfalha++;
+            }
         }
 
         if(eixos1 == 2){
@@ -160,8 +166,6 @@ void velo(void) {
             total9++;
         }
     }
-    veloreslt();
-
 }
 
 void compri(void) {
@@ -172,20 +176,6 @@ void compri(void) {
         }
         if (veiculos[i].comprimento <= comprim[eixos2].eixocmin) {
             comprim[eixos2].eixocmin = veiculos[i].comprimento;
-        }
-    }
-    comprireslt();
-}
-
-void veloreslt(void) {
-    int eixos3 = veiculos[i].eixos;
-    if (eixos3 >= 2 && eixos3 <= 9 && (eixos3 % 2 == 1 || eixos3 == 2)) {
-        if (veiculos[eixos3].velocidade > vmax[eixos3]) {
-            erro[eixos3].exvmaxfalha++;
-        }
-        
-        if(veiculos[eixos3].velocidade < vmin[eixos3]) {
-            erro[eixos3].exvminfalha++;
         }
     }
 }
