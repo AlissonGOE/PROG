@@ -44,7 +44,7 @@ int total2 = 0,
     total9 = 0;
 
 const float vmax[] = {0.0, 0.0, 19.6, 18.9, 0.0, 11.4, 0.0, 11.4, 0.0, 11.1};
-const float vmin[] = {0.0, 0.0, 11.1, 18.7, 0.0, 10.6, 0.0, 11.3, 0.0, 11.1};
+const float vmin[] = {0.0, 0.0, 11.1, 15.7, 0.0, 10.6, 0.0, 11.3, 0.0, 11.1};
 
 const float cmax[] = {0.0, 0.0, 1.7, 3.0, 0.0, 1.5, 0.0, 3.1, 0.0, 3.5};
 const float cmin[] = {0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0};
@@ -71,7 +71,7 @@ int main() {
         printf("Arquivo resultado.txt aberto com sucesso!!\n");
     }
     
-    memset(erro, 0, sizeof(erro));
+
     // Inicializar os valores mínimos com um valor alto
     eixo[2].eixovmin = 200.0;
     eixo[3].eixovmin = 200.0;
@@ -96,15 +96,18 @@ int main() {
         if (coluna == 3) {
             veiculos[i].velocidade = strtof(campo, NULL);
             if (veiculos[i].velocidade < 0) campos_validos = 0;
-            printf("Velocidade = %.1f\n", veiculos[i].velocidade);
+            //printf("Velocidade = %.1f\n", veiculos[i].velocidade);
+
         } else if (coluna == 4) {
             veiculos[i].comprimento = strtof(campo, NULL);
             if (veiculos[i].comprimento < 0) campos_validos = 0;
-            printf("Comprimento = %.1f\n", veiculos[i].comprimento);
+            //printf("Comprimento = %.1f\n", veiculos[i].comprimento);
+
         } else if (coluna == 6) {
             veiculos[i].eixos = atoi(campo);
             if (veiculos[i].eixos <= 0) campos_validos = 0;
-            printf("Eixos = %d\n", veiculos[i].eixos);
+            //printf("Eixos = %d\n", veiculos[i].eixos);
+            
         }
         campo = strtok(NULL, delimitador);
         coluna++;
@@ -139,13 +142,12 @@ void velo(void) {
     int eixos = veiculos[i].eixos;
     if (eixos == 2 || eixos == 3 || eixos == 5 || eixos == 7 || eixos == 9) {
         if (veiculos[i].velocidade >= eixo[eixos].eixovmax) {
-            eixo[eixos].eixovmax = veiculos[i].velocidade;
-            veloreslt();
+            eixo[eixos].eixovmax = veiculos[i].velocidade;            
         }
         if (veiculos[i].velocidade <= eixo[eixos].eixovmin) {
             eixo[eixos].eixovmin = veiculos[i].velocidade;
-            veloreslt();
         }
+
         if(eixos == 2){
             total2++;
         }
@@ -162,6 +164,7 @@ void velo(void) {
             total9++;
         }
     }
+    veloreslt();
 
 }
 
@@ -170,13 +173,12 @@ void compri(void) {
     if (eixos == 2 || eixos == 3 || eixos == 5 || eixos == 7 || eixos == 9) {
         if (veiculos[i].comprimento >= comprim[eixos].eixocmax) {
             comprim[eixos].eixocmax = veiculos[i].comprimento;
-            comprireslt();
         }
         if (veiculos[i].comprimento <= comprim[eixos].eixocmin) {
             comprim[eixos].eixocmin = veiculos[i].comprimento;
-            comprireslt();
         }
     }
+    comprireslt();
 }
 
 void veloreslt(void) {
@@ -185,7 +187,7 @@ void veloreslt(void) {
         if (eixo[eixos].eixovmax > vmax[eixos]) {
             erro[eixos].exvmaxfalha++;
         }
-        if (eixo[eixos].eixovmin < vmin[eixos]) {
+        if(eixo[eixos].eixovmin < vmin[eixos]) {
             erro[eixos].exvminfalha++;
         }
     }
