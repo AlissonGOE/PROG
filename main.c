@@ -26,14 +26,20 @@ struct falha
     int excminfalha;
 };
 
+enum printerror{
+    printof = 0 ,
+    printon ,
+};
 
 
 char linha[1024];  // Define um buffer para armazenar cada linha
+char linhaanterior[1024] = "";
 const char delimitador[] = ";";
 struct veiculo veiculos[500];
 struct deltavelo veloci[9];
 struct deltacomprimento comprim[15];
 struct falha erro[9];
+enum printerror set;
 
 int i = 0;  // contadores
 
@@ -68,6 +74,13 @@ int main() {
     } else {
         printf("Arquivo resultado.txt aberto com sucesso!!\n");
     }
+     FILE *erros = fopen("erros.txt", "w");
+    if (erros == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    } else {
+        printf("\nArquivo dados.txt aberto com sucesso!!\n");
+    }
     
 
     // Inicializar os valores mínimos com um valor alto
@@ -86,34 +99,34 @@ int main() {
 
     while (fgets(linha, sizeof(linha), arquivo)) {
     linha[strcspn(linha, "\n")] = 0;
+    strcpy(linhaanterior, linha);
+
     char *campo = strtok(linha, delimitador);
     int coluna = 0;
-    //int campos_validos = 1;  // Verificador de campos válidos
 
         while (campo != NULL) {
             if (coluna == 3) {
                 veiculos[i].velocidade = strtof(campo, NULL);
-                //if (veiculos[i].velocidade < 0) campos_validos = 0;
                 //printf("Velocidade = %.1f\n", veiculos[i].velocidade);
-
             } else if (coluna == 4) {
                 veiculos[i].comprimento = strtof(campo, NULL);
-                //if (veiculos[i].comprimento < 0) campos_validos = 0;
                 //printf("Comprimento = %.1f\n", veiculos[i].comprimento);
-
             } else if (coluna == 6) {
                 veiculos[i].eixos = atoi(campo);
-                //if (veiculos[i].eixos <= 0) campos_validos = 0;
                 //printf("Eixos = %d\n", veiculos[i].eixos);
-            
             }
             campo = strtok(NULL, delimitador);
             coluna++;
+
         }
         velo();
         compri();
+        if(set == 1){
+            fprintf(erros, "%s\n", linhaanterior);
+            set = 0;
+        }
         i++;
-
+        
     }
 
     fprintf(resultado, "\n2 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[2].eixovmax, veloci[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
@@ -129,6 +142,7 @@ int main() {
 
     fclose(arquivo);
     fclose(resultado);
+    fclose(erros);
     return 0;
 }
 
@@ -139,12 +153,14 @@ void velo(void) {
             veloci[eixos1].eixovmax = veiculos[i].velocidade;
             if(veloci[eixos1].eixovmax > vmax[eixos1]){
                 erro[eixos1].exvmaxfalha++;
+                set = 1;
             }            
         }
         if (veiculos[i].velocidade <= veloci[eixos1].eixovmin) {
             veloci[eixos1].eixovmin = veiculos[i].velocidade;
             if(veloci[eixos1].eixovmin < vmin[eixos1]){
                 erro[eixos1].exvminfalha++;
+                set = 1;
             }
         }
 
@@ -173,12 +189,14 @@ void compri(void) {
             comprim[eixos2].eixocmax = veiculos[i].comprimento;
             if(comprim[eixos2].eixocmax > cmax[eixos2]){
                 erro[eixos2].excmaxfalha++;
+                set = 1;
             }
         }
         if (veiculos[i].comprimento <= comprim[eixos2].eixocmin) {
             comprim[eixos2].eixocmin = veiculos[i].comprimento;
             if(comprim[eixos2].eixocmin < cmin[eixos2]){
                 erro[eixos2].excminfalha++;
+                set = 1;
             }
         }
     }
