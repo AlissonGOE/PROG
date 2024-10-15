@@ -5,6 +5,7 @@
 struct veiculo {
     float velocidade;
     float comprimento;
+    float peso;
     int eixos;
 };
 
@@ -18,12 +19,21 @@ struct deltacomprimento {
     float eixocmin;
 };
 
+struct deltapeso
+{
+    float eixopmax;
+    float eixopmin;
+};
+
+
 struct falha
 {
     int exvmaxfalha;
     int exvminfalha;
     int excmaxfalha;
     int excminfalha;
+    int expmaxfalha;
+    int expminfalha;
 };
 
 enum printerror{
@@ -35,9 +45,10 @@ char linha[1024];  // Define um buffer para armazenar cada linha
 char linhaanterior[1024] = "";
 const char delimitador[] = ";";
 struct veiculo veiculos[500];
-struct deltavelo veloci[9];
-struct deltacomprimento comprim[15];
-struct falha erro[9];
+struct deltavelo veloci[50];
+struct deltacomprimento comprim[50];
+struct deltapeso pes[50];
+struct falha erro[50];
 enum printerror set;
 
 int i = 0;  // contadores
@@ -55,8 +66,12 @@ const float vmin[] = {0.0, 0.0, 11.1, 15.7, 0.0, 10.6, 0.0, 11.3, 0.0, 11.1};
 const float cmax[] = {0.0, 0.0, 3.5, 3.0, 0.0, 1.5, 0.0, 3.1, 0.0, 3.5};
 const float cmin[] = {0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0};
 
+const float pmax[] = {0.0, 0.0, 8.2, 8.6, 0.0, 8.6, 0.0, 12.1, 0.0, 14.9};
+const float pmin[] = {0.0, 0.0, 1.0, 4.0, 0.0, 3.0, 0.0, 5.2, 0.0, 6.5};
+
 void velo(void);
 void compri(void);
+void peso(void);
 
 int main() {
     FILE *arquivo = fopen("dados.txt", "r");
@@ -95,6 +110,11 @@ int main() {
     comprim[7].eixocmin = 200.0;
     comprim[9].eixocmin = 200.0;
 
+    pes[2].eixopmin = 200.0;
+    pes[3].eixopmin = 200.0;
+    pes[5].eixopmin = 200.0;
+    pes[7].eixopmin = 200.0;
+    pes[9].eixopmin = 200.0;
 
     while (fgets(linha, sizeof(linha), arquivo)) {
     linha[strcspn(linha, "\n")] = 0;
@@ -110,22 +130,25 @@ int main() {
                 veiculos[i].comprimento = strtof(campo, NULL);
             } else if (coluna == 6) {
                 veiculos[i].eixos = atoi(campo);
+            } else if (coluna == 10) {
+                veiculos[i].peso = strtof(campo, NULL);
             }
             campo = strtok(NULL, delimitador);
             coluna++;
         }
         velo();
         compri();
+        peso();
 
         switch (set)
         {
         case 1:
-            fprintf(erros, "ERROR - %d EIXOS - VELOCIDADE: %.1fKm/h - COMPRIMENTO: %.1fm\n", veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento);
+            fprintf(erros, "ERROR - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m\n", veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento);
             fprintf(erros, "ERROR - %s\n\n", linhaanterior);
             set = 0;
             break;
         case 2:
-            fprintf(erros, "ERROR - %d EIXOS - VELOCIDADE: %.1fKm/h - COMPRIMENTO: %.1fm\n", veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento);
+            fprintf(erros, "ERROR - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m\n", veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento);
             fprintf(erros, "ERROR EIXO %s\n\n", linhaanterior);
             set = 0;
             break;
@@ -135,14 +158,19 @@ int main() {
 
     fprintf(resultado, "\n2 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[2].eixovmax, veloci[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
     fprintf(resultado, "2 EIXOS -  COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:     %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin, erro[2].excmaxfalha, erro[2].excminfalha);
+    fprintf(resultado, "2 EIXOS -  PESO MAX:         %.1f PBT - PESO MIN:          %.1f PBT - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[2].eixopmax, pes[2].eixopmin, erro[2].expmaxfalha, erro[2].expminfalha);
     fprintf(resultado, "\n3 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[3].eixovmax, veloci[3].eixovmin, erro[3].exvmaxfalha, erro[3].exvminfalha, total3);
     fprintf(resultado, "3 EIXOS -  COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:     %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[3].eixocmax, comprim[3].eixocmin, erro[3].excmaxfalha, erro[3].excminfalha);
+    fprintf(resultado, "3 EIXOS -  PESO MAX:         %.1f PBT - PESO MIN:          %.1f PBT - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[3].eixopmax, pes[3].eixopmin, erro[3].expmaxfalha, erro[3].expminfalha);
     fprintf(resultado, "\n5 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[5].eixovmax, veloci[5].eixovmin, erro[5].exvmaxfalha, erro[5].exvminfalha, total5);
     fprintf(resultado, "5 EIXOS -  COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:     %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[5].eixocmax, comprim[5].eixocmin, erro[5].excmaxfalha, erro[5].excminfalha);
+    fprintf(resultado, "5 EIXOS -  PESO MAX:         %.1f PBT - PESO MIN:          %.1f PBT - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[5].eixopmax, pes[5].eixopmin, erro[5].expmaxfalha, erro[5].expminfalha);
     fprintf(resultado, "\n7 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[7].eixovmax, veloci[7].eixovmin, erro[7].exvmaxfalha, erro[7].exvminfalha, total7);
     fprintf(resultado, "7 EIXOS -  COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:     %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[7].eixocmax, comprim[7].eixocmin, erro[7].excmaxfalha, erro[7].excminfalha);
+    fprintf(resultado, "7 EIXOS -  PESO MAX:        %.1f PBT - PESO MIN:          %.1f PBT - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[7].eixopmax, pes[7].eixopmin, erro[7].expmaxfalha, erro[7].expminfalha);
     fprintf(resultado, "\n9 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[9].eixovmax, veloci[9].eixovmin, erro[9].exvmaxfalha, erro[9].exvminfalha, total9);
     fprintf(resultado, "9 EIXOS -  COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:     %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin, erro[9].excmaxfalha, erro[9].excminfalha);
+    fprintf(resultado, "9 EIXOS -  PESO MAX:        %.1f PBT - PESO MIN:          %.1f PBT - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[9].eixopmax, pes[9].eixopmin, erro[9].expmaxfalha, erro[9].expminfalha);
     fprintf(resultado, "\nTOTAL DE TRANSITOS COLETADOS: %d", total2 + total3 + total5 + total7 + total9 + totaleixoerror);
 
     fclose(arquivo);
@@ -213,3 +241,21 @@ void compri(void) {
     }
 }
 
+void peso(void){
+    int eixos3 = veiculos[i].eixos;
+    if(eixos3 == 2 || eixos3 == 3 || eixos3 == 5 || eixos3 == 7 || eixos3 == 9){
+        if (veiculos[i].peso >= pes[eixos3].eixopmax){
+            pes[eixos3].eixopmax = veiculos[i].peso;
+            if(pes[eixos3].eixopmax > pmax[eixos3]){
+                erro[eixos3].expmaxfalha++;
+            }
+        }
+
+        if (veiculos[i].peso <= pes[eixos3].eixopmin) {
+            pes[eixos3].eixopmin = veiculos[i].peso;
+            if(pes[eixos3].eixopmin < pmin[eixos3]){
+                erro[eixos3].expminfalha++;
+            }
+        }
+    }
+}
