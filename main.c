@@ -47,7 +47,8 @@ int total2 = 0,
     total3 = 0,
     total5 = 0,
     total7 = 0,
-    total9 = 0;
+    total9 = 0,
+    totaleixoerror = 0;
 
 const float vmax[] = {0.0, 0.0, 19.6, 18.9, 0.0, 11.4, 0.0, 11.4, 0.0, 11.1}; // range da simuladora
 const float vmin[] = {0.0, 0.0, 11.1, 15.7, 0.0, 10.6, 0.0, 11.3, 0.0, 11.1};
@@ -79,7 +80,7 @@ int main() {
         printf("Erro ao abrir o arquivo.\n");
         return 1;
     } else {
-        printf("\nArquivo dados.txt aberto com sucesso!!\n");
+        printf("Arquivo erros.txt aberto com sucesso!!\n");
     }
     
     // Inicializar os valores mínimos com um valor alto
@@ -116,9 +117,17 @@ int main() {
         }
         velo();
         compri();
-        if(set == 1){
-            fprintf(erros, "ERROR %s\n", linhaanterior);
+
+        switch (set)
+        {
+        case 1:
+            fprintf(erros, "ERROR      %s\n", linhaanterior);
             set = 0;
+            break;
+        case 2:
+            fprintf(erros, "ERROR EIXO %s\n", linhaanterior);
+            set = 0;
+            break;
         }
         i++; 
     }
@@ -133,11 +142,12 @@ int main() {
     fprintf(resultado, "7 EIXOS -  COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:     %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[7].eixocmax, comprim[7].eixocmin, erro[7].excmaxfalha, erro[7].excminfalha);
     fprintf(resultado, "\n9 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[9].eixovmax, veloci[9].eixovmin, erro[9].exvmaxfalha, erro[9].exvminfalha, total9);
     fprintf(resultado, "9 EIXOS -  COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:     %.1f m - FALHA V-MAX: %d - FALHA C-MIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin, erro[9].excmaxfalha, erro[9].excminfalha);
-    fprintf(resultado, "\nTOTAL DE TRANSITOS COLETADOS: %d", total2 + total3 + total5 + total7 + total9);
+    fprintf(resultado, "\nTOTAL DE TRANSITOS COLETADOS: %d", total2 + total3 + total5 + total7 + total9 + totaleixoerror);
 
     fclose(arquivo);
     fclose(resultado);
     fclose(erros);
+    system("PAUSE");
     return 0;
 }
 
@@ -174,6 +184,11 @@ void velo(void) {
         if(eixos1 == 9){
             total9++;
         }
+    }
+    else{
+        //contagem de eixos divergente
+        set = 2;
+        totaleixoerror++;
     }
 }
 
