@@ -27,10 +27,9 @@ struct falha
 };
 
 enum printerror{
-    printof = 0 ,
+    printof = 0,
     printon ,
 };
-
 
 char linha[1024];  // Define um buffer para armazenar cada linha
 char linhaanterior[1024] = "";
@@ -73,14 +72,14 @@ int main() {
         fclose(arquivo);
         return 1;
     } else {
-        printf("Arquivo resultado.txt aberto com sucesso!!\n");
+        printf("\nArquivo resultado.txt aberto com sucesso!!\n");
     }
      FILE *erros = fopen("erros.txt", "w");
     if (erros == NULL) {
         printf("Erro ao abrir o arquivo.\n");
         return 1;
     } else {
-        printf("Arquivo erros.txt aberto com sucesso!!\n");
+        printf("\nArquivo erros.txt aberto com sucesso!!\n");
     }
     
     // Inicializar os valores mínimos com um valor alto
@@ -121,11 +120,13 @@ int main() {
         switch (set)
         {
         case 1:
-            fprintf(erros, "ERROR      %s\n", linhaanterior);
+            fprintf(erros, "ERROR - %d EIXOS - VELOCIDADE: %.1fKm/h - COMPRIMENTO: %.1fm\n", veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento);
+            fprintf(erros, "ERROR - %s\n\n", linhaanterior);
             set = 0;
             break;
         case 2:
-            fprintf(erros, "ERROR EIXO %s\n", linhaanterior);
+            fprintf(erros, "ERROR - %d EIXOS - VELOCIDADE: %.1fKm/h - COMPRIMENTO: %.1fm\n", veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento);
+            fprintf(erros, "ERROR EIXO %s\n\n", linhaanterior);
             set = 0;
             break;
         }
@@ -211,3 +212,4 @@ void compri(void) {
         }
     }
 }
+
