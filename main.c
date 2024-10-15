@@ -49,7 +49,7 @@ int total2 = 0,
     total7 = 0,
     total9 = 0;
 
-const float vmax[] = {0.0, 0.0, 19.6, 18.9, 0.0, 11.4, 0.0, 11.4, 0.0, 11.1};
+const float vmax[] = {0.0, 0.0, 19.6, 18.9, 0.0, 11.4, 0.0, 11.4, 0.0, 11.1}; // range da simuladora
 const float vmin[] = {0.0, 0.0, 11.1, 15.7, 0.0, 10.6, 0.0, 11.3, 0.0, 11.1};
 
 const float cmax[] = {0.0, 0.0, 3.5, 3.0, 0.0, 1.5, 0.0, 3.1, 0.0, 3.5};
@@ -82,7 +82,6 @@ int main() {
         printf("\nArquivo dados.txt aberto com sucesso!!\n");
     }
     
-
     // Inicializar os valores mínimos com um valor alto
     veloci[2].eixovmin = 200.0;
     veloci[3].eixovmin = 200.0;
@@ -107,17 +106,13 @@ int main() {
         while (campo != NULL) {
             if (coluna == 3) {
                 veiculos[i].velocidade = strtof(campo, NULL);
-                //printf("Velocidade = %.1f\n", veiculos[i].velocidade);
             } else if (coluna == 4) {
                 veiculos[i].comprimento = strtof(campo, NULL);
-                //printf("Comprimento = %.1f\n", veiculos[i].comprimento);
             } else if (coluna == 6) {
                 veiculos[i].eixos = atoi(campo);
-                //printf("Eixos = %d\n", veiculos[i].eixos);
             }
             campo = strtok(NULL, delimitador);
             coluna++;
-
         }
         velo();
         compri();
@@ -125,8 +120,7 @@ int main() {
             fprintf(erros, "%s\n", linhaanterior);
             set = 0;
         }
-        i++;
-        
+        i++; 
     }
 
     fprintf(resultado, "\n2 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[2].eixovmax, veloci[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
