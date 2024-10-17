@@ -65,6 +65,7 @@ struct falha erro[50];
 enum printerror set;
 enum transito modotransito;
 
+int ganho = 0;
 int i = 0;  // contadores
 
 int total2 = 0,
@@ -111,7 +112,39 @@ int main() {
     
     case 2:
         printf("\n Modo de transito selecionado: \033[32m02 - SAT-PE(Transito variado e repetitivo)\033[0m\n");
-        vmax[2] = 19.8;
+        printf(" -------------------\n");
+        printf(" 01 - Ganho MAXIMO\n");
+        printf(" 02 - Ganho MINIMO\n");
+        printf(" -------------------\n");
+        printf(" Selecione o ganho dos piezos de pesagem: ");
+        scanf("%d", &ganho);
+        switch (ganho)
+        {
+        case 1:
+            printf(GREEN" Ganho maximo selecionado\n"RESET);
+
+            vmax[2] = 19.8, vmax[3] = 19.0, vmax[5] = 11.6, vmax[7] = 11.6, vmax[9] = 11.3; 
+            vmin[2] = 19.4, vmin[3] = 18.6, vmin[5] = 11.2, vmin[7] = 11.2, vmin[9] = 10.9;
+            cmax[2] = 1.9, cmax[3] = 3.1, cmax[5] = 1.7, cmax[7] = 3.3, cmax[9] = 3.7;
+            cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
+            pmax[2] = 1.0, pmax[3] = 20.65, pmax[5] = 20.5, pmax[7] = 28.7, pmax[9] = 35.4; 
+            pmin[2] = 1.0, pmin[3] = 18.65, pmin[5] = 18.6, pmin[7] = 26.0, pmin[9] = 32.0;
+
+            break;
+        
+        case 2:
+            printf(GREEN" Ganho minimo selecionado\n"RESET);
+
+            vmax[2] = 19.8, vmax[3] = 19.0, vmax[5] = 11.6, vmax[7] = 11.6, vmax[9] = 11.3; 
+            vmin[2] = 19.4, vmin[3] = 18.6, vmin[5] = 11.2, vmin[7] = 11.2, vmin[9] = 10.9;
+            cmax[2] = 1.9, cmax[3] = 3.1, cmax[5] = 1.7, cmax[7] = 3.3, cmax[9] = 3.7;
+            cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
+            pmax[2] = 1.0, pmax[3] = 4.9, pmax[5] = 4.9, pmax[7] = 6.8, pmax[9] = 8.4; 
+            pmin[2] = 1.0, pmin[3] = 4.4, pmin[5] = 4.4, pmin[7] = 6.2, pmin[9] = 7.6;
+
+            break;
+    
+        }
         break;
 
     case 3:
@@ -135,8 +168,6 @@ int main() {
         break;
     }
 
-
-
     FILE *arquivo = fopen("dados.txt", "r");
     if (arquivo == NULL) {
         printf(" Erro ao abrir o arquivo.\n");
@@ -150,14 +181,14 @@ int main() {
         fclose(arquivo);
         return 1;
     } else {
-        printf("\n Arquivo resultado.txt aberto com sucesso!!\n");
+        printf(" Arquivo resultado.txt aberto com sucesso!!\n");
     }
      FILE *erros = fopen("erros.txt", "w");
     if (erros == NULL) {
         printf(" Erro ao abrir o arquivo.\n");
         return 1;
     } else {
-        printf("\n Arquivo erros.txt aberto com sucesso!!\n");
+        printf(" Arquivo erros.txt aberto com sucesso!!\n");
     }
     
     // Inicializar os valores mínimos com um valor alto
@@ -239,6 +270,8 @@ int main() {
     fclose(arquivo);
     fclose(resultado);
     fclose(erros);
+
+    printf(GREEN" Teste finalizado com sucesso!!\n"RESET);
     system("PAUSE");
     return 0;
 }
