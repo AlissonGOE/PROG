@@ -41,6 +41,15 @@ enum printerror{
     printon ,
 };
 
+enum transito{
+    satpevr = 0,
+    satpevrc,
+    somentelacos,
+    somentepiezos,
+    satpe,
+    sat,
+};
+
 char linha[1024];  // Define um buffer para armazenar cada linha
 char linhaanterior[1024] = "";
 const char delimitador[] = ";";
@@ -50,6 +59,7 @@ struct deltacomprimento comprim[50];
 struct deltapeso pes[50];
 struct falha erro[50];
 enum printerror set;
+enum transito modotransito;
 
 int i = 0;  // contadores
 
@@ -74,27 +84,73 @@ void compri(void);
 void peso(void);
 
 int main() {
+
+    
+    printf("teste\n");
+    printf(" --------------------------------------------------------------------------------04--03--02--01----\n");
+    printf(" 01 - SAT-PE(Transito)                                                   DIP-SW: OFF-OFF-OFF-OFF\n");                                           
+    printf(" 02 - SAT-PE(Transito variado e repetitivo)                              DIP-SW: OFF-OFF-OFF-ON \n");
+    printf(" 03 - SAT(Transito variado e rondomico em cada canal)                    DIP-SW: OFF-OFF-ON--OFF\n");
+    printf(" 04 - SAT-PE(Transito variado e repetitivo em todos os canais)           DIP-SW: OFF-OFF-ON--ON \n");
+    printf(" 05 - Somente lacos(Transito unico/repetitivo)                           DIP-SW: OFF-ON--OFF-OFF\n");
+    printf(" 06 - Somente piezos(Transito unico/repetitivo)                          DIP-SW: OFF-ON--OFF-ON \n");
+    printf(" ------------------------------------------------------------------------------------------------\n");
+    printf(" Selecione o modo de transito do arquivo: ");
+    scanf("%d", &modotransito);
+
+    switch (modotransito)
+    {
+    case 1:
+        printf(" Modo de transito selecionado: 01 - SAT-PE(Transito)\n"); 
+        break;
+    
+    case 2:
+        printf(" Modo de transito selecionado: 02 - SAT-PE(Transito variado e repetitivo)\n");
+        break;
+
+    case 3:
+        printf(" Modo de transito selecionado: 03 - SAT(Transito variado e rondomico em cada canal)\n");
+        break;
+
+    case 4:
+        printf(" Modo de transito selecionado: 04 - SAT-PE(Transito variado e repetitivo em todos os canais)\n");
+        break;
+
+    case 5:
+        printf(" Modo de transito selecionado: 05 - Somente lacos(Transito unico/repetitivo)\n");
+        break;
+
+    case 6:
+        printf(" Modo de transito selecionado: 06 - Somente piezos(Transito unico/repetitivo)\n");
+        break;
+
+    default:
+        break;
+    }
+
+
+
     FILE *arquivo = fopen("dados.txt", "r");
     if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
+        printf(" Erro ao abrir o arquivo.\n");
         return 1;
     } else {
-        printf("\nArquivo dados.txt aberto com sucesso!!\n");
+        printf("\n Arquivo dados.txt aberto com sucesso!!\n");
     }
     FILE *resultado = fopen("resultado.txt", "w");
     if (resultado == NULL) {
-        printf("Erro ao abrir o arquivo de resultado.\n");
+        printf(" Erro ao abrir o arquivo de resultado.\n");
         fclose(arquivo);
         return 1;
     } else {
-        printf("\nArquivo resultado.txt aberto com sucesso!!\n");
+        printf("\n Arquivo resultado.txt aberto com sucesso!!\n");
     }
      FILE *erros = fopen("erros.txt", "w");
     if (erros == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
+        printf(" Erro ao abrir o arquivo.\n");
         return 1;
     } else {
-        printf("\nArquivo erros.txt aberto com sucesso!!\n");
+        printf("\n Arquivo erros.txt aberto com sucesso!!\n");
     }
     
     // Inicializar os valores mínimos com um valor alto
