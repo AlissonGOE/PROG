@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+
 struct veiculo {
     float velocidade;
     float comprimento;
@@ -70,14 +74,14 @@ int total2 = 0,
     total9 = 0,
     totaleixoerror = 0;
 
-const float vmax[] = {0.0, 0.0, 19.6, 18.9, 0.0, 11.4, 0.0, 11.4, 0.0, 11.1}; // range da simuladora
-const float vmin[] = {0.0, 0.0, 11.1, 15.7, 0.0, 10.6, 0.0, 11.3, 0.0, 11.1};
+float vmax[] = {0.0, 0.0, 19.6, 18.9, 0.0, 11.4, 0.0, 11.4, 0.0, 11.1}; // range da simuladora
+float vmin[] = {0.0, 0.0, 11.1, 15.7, 0.0, 10.6, 0.0, 11.3, 0.0, 11.1};
 
-const float cmax[] = {0.0, 0.0, 3.5, 3.0, 0.0, 1.5, 0.0, 3.1, 0.0, 3.5};
-const float cmin[] = {0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0};
+float cmax[] = {0.0, 0.0, 3.5, 3.0, 0.0, 1.5, 0.0, 3.1, 0.0, 3.5};
+float cmin[] = {0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0};
 
-const float pmax[] = {0.0, 0.0, 8.2, 8.6, 0.0, 8.6, 0.0, 12.1, 0.0, 14.9};
-const float pmin[] = {0.0, 0.0, 1.0, 4.0, 0.0, 3.0, 0.0, 5.2, 0.0, 6.5};
+float pmax[] = {0.0, 0.0, 8.2, 8.6, 0.0, 8.6, 0.0, 12.1, 0.0, 14.9};
+float pmin[] = {0.0, 0.0, 1.0, 4.0, 0.0, 3.0, 0.0, 5.2, 0.0, 6.5};
 
 void velo(void);
 void compri(void);
@@ -85,15 +89,16 @@ void peso(void);
 
 int main() {
 
-    
-    printf("teste\n");
+    system("CLS");
+
+    printf("\n PROGRAMA PARA ANALISAR ARQUIVO DE TRANSITO SAT-PE-SB\n");
     printf(" --------------------------------------------------------------------------------04--03--02--01----\n");
     printf(" 01 - SAT-PE(Transito)                                                   DIP-SW: OFF-OFF-OFF-OFF\n");                                           
-    printf(" 02 - SAT-PE(Transito variado e repetitivo)                              DIP-SW: OFF-OFF-OFF-ON \n");
+    printf(" 02 - SAT-PE(Transito variado e repetitivo)                              DIP-SW: OFF-OFF-OFF-\033[32mON\033[0m \n");
     printf(" 03 - SAT(Transito variado e rondomico em cada canal)                    DIP-SW: OFF-OFF-ON--OFF\n");
-    printf(" 04 - SAT-PE(Transito variado e repetitivo em todos os canais)           DIP-SW: OFF-OFF-ON--ON \n");
-    printf(" 05 - Somente lacos(Transito unico/repetitivo)                           DIP-SW: OFF-ON--OFF-OFF\n");
-    printf(" 06 - Somente piezos(Transito unico/repetitivo)                          DIP-SW: OFF-ON--OFF-ON \n");
+    printf(" 04 - SAT-PE(Transito variado e repetitivo em todos os canais)           DIP-SW: OFF-OFF-\033[32mON\033[0m--\033[32mON\033[0m \n");
+    printf(" 05 - Somente lacos(Transito unico/repetitivo)                           DIP-SW: OFF-\033[32mON\033[0m--OFF-OFF\n");
+    printf(" 06 - Somente piezos(Transito unico/repetitivo)                          DIP-SW: OFF-\033[32mON\033[0m--OFF-\033[32mON\033[0m \n");
     printf(" ------------------------------------------------------------------------------------------------\n");
     printf(" Selecione o modo de transito do arquivo: ");
     scanf("%d", &modotransito);
@@ -101,30 +106,32 @@ int main() {
     switch (modotransito)
     {
     case 1:
-        printf(" Modo de transito selecionado: 01 - SAT-PE(Transito)\n"); 
+        printf("\n Modo de transito selecionado: \033[32m01 - SAT-PE(Transito)\033[0m\n"); 
         break;
     
     case 2:
-        printf(" Modo de transito selecionado: 02 - SAT-PE(Transito variado e repetitivo)\n");
+        printf("\n Modo de transito selecionado: \033[32m02 - SAT-PE(Transito variado e repetitivo)\033[0m\n");
+        vmax[2] = 19.8;
         break;
 
     case 3:
-        printf(" Modo de transito selecionado: 03 - SAT(Transito variado e rondomico em cada canal)\n");
+        printf("\n Modo de transito selecionado: \033[32m03 - SAT(Transito variado e rondomico em cada canal)\033[0m\n");
         break;
 
     case 4:
-        printf(" Modo de transito selecionado: 04 - SAT-PE(Transito variado e repetitivo em todos os canais)\n");
+        printf("\n Modo de transito selecionado: \033[32m04 - SAT-PE(Transito variado e repetitivo em todos os canais)\033[0m\n");
         break;
 
     case 5:
-        printf(" Modo de transito selecionado: 05 - Somente lacos(Transito unico/repetitivo)\n");
+        printf("\n Modo de transito selecionado: \033[32m05 - Somente lacos(Transito unico/repetitivo)\033[0m\n");
         break;
 
     case 6:
-        printf(" Modo de transito selecionado: 06 - Somente piezos(Transito unico/repetitivo)\n");
+        printf("\n Modo de transito selecionado: \033[32m06 - Somente piezos(Transito unico/repetitivo)\033[0m\n");
         break;
 
     default:
+        printf(RED"Digite uma opcao valida!!!"RESET);
         break;
     }
 
