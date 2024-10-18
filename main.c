@@ -281,6 +281,24 @@ int main() {
     fprintf(resultado, "9 EIXOS -  PESO MAX:       %.2f PBT - PESO MIN:        %.2f PBT - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[9].eixopmax, pes[9].eixopmin, erro[9].expmaxfalha, erro[9].expminfalha);
     fprintf(resultado, "\nTOTAL DE TRANSITOS COLETADOS: %d", total2 + total3 + total5 + total7 + total9 + totaleixoerror);
 
+    printf("\n \033[32m2\033[0m EIXOS -  VELOCIDADE MAX: \033[32m%.1f Km/h\033[0m - VELOCIDADE MIN:  \033[32m%.1f Km/h\033[0m - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[2].eixovmax, veloci[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
+    printf(" \033[32m2\033[0m EIXOS -  COMPRIMENTO MAX:    \033[32m%.1f m\033[0m - COMPRIMENTO MIN:     \033[32m%.1f m\033[0m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin, erro[2].excmaxfalha, erro[2].excminfalha);
+    printf(" \033[32m2\033[0m EIXOS -  PESO MAX:        \033[32m%.2f PBT\033[0m - PESO MIN:         \033[32m%.2f PBT\033[0m - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[2].eixopmax, pes[2].eixopmin, erro[2].expmaxfalha, erro[2].expminfalha);
+    printf("\n \033[32m3\033[0m EIXOS -  VELOCIDADE MAX: \033[32m%.1f Km/h\033[0m - VELOCIDADE MIN:  \033[32m%.1f Km/h\033[0m - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[3].eixovmax, veloci[3].eixovmin, erro[3].exvmaxfalha, erro[3].exvminfalha, total3);
+    printf(" \033[32m3\033[0m EIXOS -  COMPRIMENTO MAX:    \033[32m%.1f m\033[0m - COMPRIMENTO MIN:     \033[32m%.1f m\033[0m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[3].eixocmax, comprim[3].eixocmin, erro[3].excmaxfalha, erro[3].excminfalha);
+    printf(" \033[32m3\033[0m EIXOS -  PESO MAX:       \033[32m%.2f PBT\033[0m - PESO MIN:        \033[32m%.2f PBT\033[0m - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[3].eixopmax, pes[3].eixopmin, erro[3].expmaxfalha, erro[3].expminfalha);
+    printf("\n \033[32m5\033[0m EIXOS -  VELOCIDADE MAX: \033[32m%.1f Km/h\033[0m - VELOCIDADE MIN:  \033[32m%.1f Km/h\033[0m - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[5].eixovmax, veloci[5].eixovmin, erro[5].exvmaxfalha, erro[5].exvminfalha, total5);
+    printf(" \033[32m\033[0m EIXOS -  COMPRIMENTO MAX:    \033[32m%.1f m\033[0m - COMPRIMENTO MIN:     \033[32m%.1f m\033[0m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[5].eixocmax, comprim[5].eixocmin, erro[5].excmaxfalha, erro[5].excminfalha);
+    printf(" \033[32m5\033[0m EIXOS -  PESO MAX:       \033[32m%.2f PBT\033[0m - PESO MIN:        \033[32m%.2f PBT\033[0m - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[5].eixopmax, pes[5].eixopmin, erro[5].expmaxfalha, erro[5].expminfalha);
+    printf("\n \033[32m7\033[0m EIXOS -  VELOCIDADE MAX: \033[32m%.1f Km/h\033[0m - VELOCIDADE MIN:  \033[32m%.1f Km/h\033[0m - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[7].eixovmax, veloci[7].eixovmin, erro[7].exvmaxfalha, erro[7].exvminfalha, total7);
+    printf(" \033[32m7\033[0m EIXOS -  COMPRIMENTO MAX:    \033[32m%.1f m\033[0m - COMPRIMENTO MIN:     \033[32m%.1f m\033[0m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[7].eixocmax, comprim[7].eixocmin, erro[7].excmaxfalha, erro[7].excminfalha);
+    printf(" \033[32m7\033[0m EIXOS -  PESO MAX:       \033[32m%.2f PBT\033[0m - PESO MIN:        \033[32m%.2f PBT\033[0m - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[7].eixopmax, pes[7].eixopmin, erro[7].expmaxfalha, erro[7].expminfalha);
+    printf("\n \033[32m9\033[0m EIXOS -  VELOCIDADE MAX: \033[32m%.1f Km/h\033[0m - VELOCIDADE MIN:  \033[32m%.1f Km/h\033[0m - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[9].eixovmax, veloci[9].eixovmin, erro[9].exvmaxfalha, erro[9].exvminfalha, total9);
+    printf(" \033[32m9\033[0m EIXOS -  COMPRIMENTO MAX:    \033[32m%.1f m\033[0m - COMPRIMENTO MIN:     \033[32m%.1f\033[0m m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin, erro[9].excmaxfalha, erro[9].excminfalha);
+    printf(" \033[32m9\033[0m EIXOS -  PESO MAX:       \033[32m%.2f PBT\033[0m - PESO MIN:        \033[32m%.2f PBT\033[0m - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[9].eixopmax, pes[9].eixopmin, erro[9].expmaxfalha, erro[9].expminfalha);
+    printf("\n TOTAL DE TRANSITOS COLETADOS: %d", total2 + total3 + total5 + total7 + total9 + totaleixoerror);
+
+
     fclose(arquivo);
     fclose(resultado);
     fclose(erros);
