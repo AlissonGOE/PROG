@@ -66,7 +66,8 @@ enum printerror set;
 enum transito modotransito;
 
 int ganho = 0;
-int i = 0;  // contadores
+int i = 1;  // contadores
+
 char fvelo = ' ';
 char fcomp = ' ';
 char fpeso = ' ';
@@ -97,13 +98,13 @@ int main() {
     system("CLS");
 
     printf("\n PROGRAMA PARA ANALISAR ARQUIVO DE TRANSITO SAT-PE-SB\n");
-    printf(" --------------------------------------------------------------------------------04--03--02--01----\n");
-    printf(" 01 - SAT-PE(Transito)                                                   DIP-SW: OFF-OFF-OFF-OFF\n");                                           
-    printf(" 02 - SAT-PE(Transito variado e repetitivo)                              DIP-SW: OFF-OFF-OFF-\033[32mON\033[0m \n");
-    printf(" 03 - SAT(Transito variado e rondomico em cada canal)                    DIP-SW: OFF-OFF-ON--OFF\n");
-    printf(" 04 - SAT-PE(Transito variado e repetitivo em todos os canais)           DIP-SW: OFF-OFF-\033[32mON\033[0m--\033[32mON\033[0m \n");
-    printf(" 05 - Somente lacos(Transito unico/repetitivo)                           DIP-SW: OFF-\033[32mON\033[0m--OFF-OFF\n");
-    printf(" 06 - Somente piezos(Transito unico/repetitivo)                          DIP-SW: OFF-\033[32mON\033[0m--OFF-\033[32mON\033[0m \n");
+    printf(" --------------------------------------------------------------------------------04--03--02--01--\n");
+    printf(" 01 - SAT-PE(Transito)                                                   DIP-SW: OFF OFF OFF OFF\n");                                           
+    printf(" 02 - SAT-PE(Transito variado e repetitivo)                              DIP-SW: OFF OFF OFF \033[32mON\033[0m \n");
+    printf(" 03 - SAT(Transito variado e rondomico em cada canal)                    DIP-SW: OFF OFF \033[32mON\033[0m  OFF\n");
+    printf(" 04 - SAT-PE(Transito variado e repetitivo em todos os canais)           DIP-SW: OFF OFF \033[32mON\033[0m  \033[32mON\033[0m \n");
+    printf(" 05 - Somente lacos(Transito unico/repetitivo)                           DIP-SW: OFF \033[32mON\033[0m  OFF OFF\n");
+    printf(" 06 - Somente piezos(Transito unico/repetitivo)                          DIP-SW: OFF \033[32mON\033[0m  OFF \033[32mON\033[0m \n");
     printf(" ------------------------------------------------------------------------------------------------\n");
     printf(" Selecione o modo de transito do arquivo: ");
     scanf("%d", &modotransito);
@@ -242,7 +243,7 @@ int main() {
         {
         case 1:
             fprintf(erros, "ERROR(%c%c%c%c) - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m - PESO: %.2f PBT\n", feixo, fvelo, fcomp, fpeso, veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].peso);
-            fprintf(erros, "ERROR - %s\n\n", linhaanterior);
+            fprintf(erros, "LINHA: %d - %s\n\n",i , linhaanterior);
             set = 0;
             fvelo = ' ';
             fcomp = ' ';
@@ -251,7 +252,7 @@ int main() {
             break;
         case 2:
             fprintf(erros, "ERROR(%c%c%c%c) - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m - PESO: %.2f PBT\n", feixo, fvelo, fcomp, fpeso, veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].peso);
-            fprintf(erros, "ERROR EIXO %s\n\n", linhaanterior);
+            fprintf(erros, "LINHA: %d -  %s\n\n",i , linhaanterior);
             set = 0;
             fvelo = ' ';
             fcomp = ' ';
@@ -260,6 +261,7 @@ int main() {
             break;
         }
         i++; 
+        
     }
 
     fprintf(resultado, "\n2 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[2].eixovmax, veloci[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
