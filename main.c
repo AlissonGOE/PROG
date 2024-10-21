@@ -92,6 +92,8 @@ float pmin[] = {0.0, 0.0, 1.0, 4.0, 0.0, 3.0, 0.0, 5.2, 0.0, 6.5};
 void velo(void);
 void compri(void);
 void peso(void);
+void copywstsatpeganhomax(void);
+void copywstsatpeganhomin(void);
 
 int main() {
 
@@ -134,6 +136,8 @@ int main() {
             cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
             pmax[2] = 1.0, pmax[3] = 20.65, pmax[5] = 20.5, pmax[7] = 28.7, pmax[9] = 35.4; 
             pmin[2] = 1.0, pmin[3] = 18.65, pmin[5] = 18.6, pmin[7] = 26.0, pmin[9] = 32.0;
+            copywstsatpeganhomax();
+
 
             break;
         
@@ -146,6 +150,7 @@ int main() {
             cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
             pmax[2] = 1.0, pmax[3] = 4.9, pmax[5] = 4.9, pmax[7] = 6.8, pmax[9] = 8.4; 
             pmin[2] = 1.0, pmin[3] = 4.4, pmin[5] = 4.4, pmin[7] = 6.2, pmin[9] = 7.6;
+            copywstsatpeganhomin();
 
             break;
     
@@ -396,4 +401,20 @@ void peso(void){
             }
         }
     }
+}
+
+void copywstsatpeganhomax(void){
+    printf(RED" COPIE OS ARQUIVOS DE LOG PARA O DIRETORIO !!!\n"RESET);
+    system("explorer \"FILEZILA\\SAT-PE-SB GAN MAX\"");
+    system("PAUSE");
+    system("type nul > dados.txt");
+    system("copy \"FILEZILA\\SAT-PE-SB GAN MAX\\*.wst\" dados.txt");
+}
+
+void copywstsatpeganhomin(void){
+    printf(RED" COPIE OS ARQUIVOS DE LOG PARA O DIRETORIO !!!\n"RESET);
+    system("explorer \"FILEZILA\\SAT-PE-SB GAN MIN\"");
+    system("PAUSE");
+    system("type nul > dados.txt");
+    system("copy \"FILEZILA\\SAT-PE-SB GAN MIN\\*.wst\" dados.txt");
 }
