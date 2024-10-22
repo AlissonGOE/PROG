@@ -54,10 +54,10 @@ enum transito{
     sat,
 };
 
-char linha[1024];  // Define um buffer para armazenar cada linha
-char linhaanterior[1024] = "";
+char linha[102400];  // Define um buffer para armazenar cada linha
+char linhaanterior[102400] = "";
 const char delimitador[] = ";";
-struct veiculo veiculos[500];
+struct veiculo veiculos[2000];
 struct deltavelo veloci[50];
 struct deltacomprimento comprim[50];
 struct deltapeso pes[50];
@@ -66,7 +66,8 @@ enum printerror set;
 enum transito modotransito;
 
 int ganho = 0;
-int i = 1;  // contadores
+int i = 1,  // contadores
+    counterror = 0;
 
 char fvelo = ' ';
 char fcomp = ' ';
@@ -92,8 +93,7 @@ float pmin[] = {0.0, 0.0, 1.0, 4.0, 0.0, 3.0, 0.0, 5.2, 0.0, 6.5};
 void velo(void);
 void compri(void);
 void peso(void);
-void copywstsatpeganhomax(void);
-void copywstsatpeganhomin(void);
+void copywstsatpe(void);
 
 int main() {
 
@@ -136,9 +136,7 @@ int main() {
             cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
             pmax[2] = 1.0, pmax[3] = 20.65, pmax[5] = 20.5, pmax[7] = 28.7, pmax[9] = 35.4; 
             pmin[2] = 1.0, pmin[3] = 18.65, pmin[5] = 18.6, pmin[7] = 26.0, pmin[9] = 32.0;
-            copywstsatpeganhomax();
-
-
+            copywstsatpe();
             break;
         
         case 2:
@@ -150,8 +148,7 @@ int main() {
             cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
             pmax[2] = 1.0, pmax[3] = 4.9, pmax[5] = 4.9, pmax[7] = 6.8, pmax[9] = 8.4; 
             pmin[2] = 1.0, pmin[3] = 4.4, pmin[5] = 4.4, pmin[7] = 6.2, pmin[9] = 7.6;
-            copywstsatpeganhomin();
-
+            copywstsatpe();
             break;
     
         }
@@ -244,26 +241,15 @@ int main() {
         compri();
         peso();
 
-        switch (set)
-        {
-        case 1:
+        if(set == 1){
             fprintf(erros, "ERROR(%c%c%c%c) - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m - PESO: %.2f PBT\n", feixo, fvelo, fcomp, fpeso, veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].peso);
             fprintf(erros, "LINHA: %d - %s\n\n",i , linhaanterior);
             set = 0;
+            counterror++;
             fvelo = ' ';
             fcomp = ' ';
             fpeso = ' ';
             feixo = ' ';
-            break;
-        case 2:
-            fprintf(erros, "ERROR(%c%c%c%c) - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m - PESO: %.2f PBT\n", feixo, fvelo, fcomp, fpeso, veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].peso);
-            fprintf(erros, "LINHA: %d -  %s\n\n",i , linhaanterior);
-            set = 0;
-            fvelo = ' ';
-            fcomp = ' ';
-            fpeso = ' ';
-            feixo = ' ';
-            break;
         }
         i++; 
         
@@ -285,6 +271,7 @@ int main() {
     fprintf(resultado, "9 EIXOS -  COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:     %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin, erro[9].excmaxfalha, erro[9].excminfalha);
     fprintf(resultado, "9 EIXOS -  PESO MAX:       %.2f PBT - PESO MIN:        %.2f PBT - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[9].eixopmax, pes[9].eixopmin, erro[9].expmaxfalha, erro[9].expminfalha);
     fprintf(resultado, "\nTOTAL DE TRANSITOS COLETADOS: %d", total2 + total3 + total5 + total7 + total9 + totaleixoerror);
+    fprintf(resultado, "\n TOTAL DE TRANSITOS COM ERROS: %d", counterror);
 
     printf("\n \033[32m2\033[0m EIXOS -  VELOCIDADE MAX: \033[32m%.1f Km/h\033[0m - VELOCIDADE MIN:  \033[32m%.1f Km/h\033[0m - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[2].eixovmax, veloci[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
     printf(" \033[32m2\033[0m EIXOS -  COMPRIMENTO MAX:    \033[32m%.1f m\033[0m - COMPRIMENTO MIN:     \033[32m%.1f m\033[0m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin, erro[2].excmaxfalha, erro[2].excminfalha);
@@ -302,13 +289,14 @@ int main() {
     printf(" \033[32m9\033[0m EIXOS -  COMPRIMENTO MAX:    \033[32m%.1f m\033[0m - COMPRIMENTO MIN:     \033[32m%.1f m\033[0m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[9].eixocmax, comprim[9].eixocmin, erro[9].excmaxfalha, erro[9].excminfalha);
     printf(" \033[32m9\033[0m EIXOS -  PESO MAX:       \033[32m%.2f PBT\033[0m - PESO MIN:        \033[32m%.2f PBT\033[0m - FALHA P-MAX: %d - FALHA P-MIN: %d\n", pes[9].eixopmax, pes[9].eixopmin, erro[9].expmaxfalha, erro[9].expminfalha);
     printf("\n TOTAL DE TRANSITOS COLETADOS: %d", total2 + total3 + total5 + total7 + total9 + totaleixoerror);
+    printf("\n TOTAL DE TRANSITOS COM ERRO: \033[31m%d\033[0m", counterror);
 
 
     fclose(arquivo);
     fclose(resultado);
     fclose(erros);
 
-    printf(GREEN" Teste finalizado com sucesso!!\n\n"RESET);
+    printf(GREEN"\n\n Teste finalizado com sucesso!!\n\n"RESET);
     system("PAUSE");
     return 0;
 }
@@ -352,7 +340,7 @@ void velo(void) {
     }
     else{
         //contagem de eixos divergente
-        set = 2;
+        set = 1;
         totaleixoerror++;
         feixo = 'E';
     }
@@ -403,18 +391,18 @@ void peso(void){
     }
 }
 
-void copywstsatpeganhomax(void){
+void copywstsatpe(void){
+    char fliez;
     printf(RED" COPIE OS ARQUIVOS DE LOG PARA O DIRETORIO !!!\n"RESET);
-    system("explorer \"FILEZILA\\SAT-PE-SB GAN MAX\"");
+    printf(RED"\n DESEJA ABRIR O FILEZILA ? S/N: \n"RESET);
+    scanf("%c", &fliez);
+    if ((fliez == 'S') || (fliez == 's')){
+        printf(RED"\n ENTRE NO FILEZILA COM O IP, USUARIO E SENHA DO EQUIPAMENTO \n"RESET);
+        system("C:\\Users\\alisson.evangelista\\Documents\\ALISSON\\PROGRAMAS\\FileZillaPortable\\FileZillaPortable.exe");
+    }
+    system("explorer \"ARQUIVOS_SAT_PE_SB\"");
     system("PAUSE");
     system("type nul > dados.txt");
-    system("copy \"FILEZILA\\SAT-PE-SB GAN MAX\\*.wst\" dados.txt");
+    system("copy \"ARQUIVOS_SAT_PE_SB\\*.wst\" dados.txt");
 }
 
-void copywstsatpeganhomin(void){
-    printf(RED" COPIE OS ARQUIVOS DE LOG PARA O DIRETORIO !!!\n"RESET);
-    system("explorer \"FILEZILA\\SAT-PE-SB GAN MIN\"");
-    system("PAUSE");
-    system("type nul > dados.txt");
-    system("copy \"FILEZILA\\SAT-PE-SB GAN MIN\\*.wst\" dados.txt");
-}
