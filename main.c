@@ -5,6 +5,7 @@
 #define RESET   "\033[0m"
 #define RED     "\033[31m"
 #define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
 
 struct veiculo {
     float velocidade;
@@ -81,14 +82,14 @@ int total2 = 0,
     total9 = 0,
     totaleixoerror = 0;
 
-float vmax[] = {0.0, 0.0, 19.6, 18.9, 0.0, 11.4, 0.0, 11.4, 0.0, 11.1}; // range da simuladora
-float vmin[] = {0.0, 0.0, 11.1, 15.7, 0.0, 10.6, 0.0, 11.3, 0.0, 11.1};
+float vmax[] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // range da simuladora
+float vmin[] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
-float cmax[] = {0.0, 0.0, 3.5, 3.0, 0.0, 1.5, 0.0, 3.1, 0.0, 3.5};
-float cmin[] = {0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0};
+float cmax[] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+float cmin[] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
-float pmax[] = {0.0, 0.0, 8.2, 8.6, 0.0, 8.6, 0.0, 12.1, 0.0, 14.9};
-float pmin[] = {0.0, 0.0, 1.0, 4.0, 0.0, 3.0, 0.0, 5.2, 0.0, 6.5};
+float pmax[] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+float pmin[] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
 void velo(void);
 void compri(void);
@@ -99,6 +100,8 @@ void init_valores_minimos(void);
 void registrarErro(FILE *erros, const char *linha, const char *linhaanterior, char feixo, char fvelo, char fcomp, char fpeso, struct veiculo veiculos[], int i);
 void processa_linha_arquivo(FILE *arquivo, FILE *erros, const char *delimitador);
 void imprime_resultado_terminal(void);
+void range_ganho_max(void);
+void range_ganho_min(void);
 
 int main() {
 
@@ -106,7 +109,7 @@ int main() {
 
     printf("\n PROGRAMA PARA ANALISAR ARQUIVO DE TRANSITO SAT-PE-SB\n");
     printf(" --------------------------------------------------------------------------------04--03--02--01--\n");
-    printf(" 01 - SAT-PE(Transito)                                                   DIP-SW: OFF OFF OFF OFF\n");                                           
+    printf(" 01 - SAT-PE(Transito livre)                                             DIP-SW: OFF OFF OFF OFF\n");                                           
     printf(" 02 - SAT-PE(Transito variado e repetitivo)                              DIP-SW: OFF OFF OFF \033[32mON\033[0m \n");
     printf(" 03 - SAT(Transito variado e rondomico em cada canal)                    DIP-SW: OFF OFF \033[32mON\033[0m  OFF\n");
     printf(" 04 - SAT-PE(Transito variado e repetitivo em todos os canais)           DIP-SW: OFF OFF \033[32mON\033[0m  \033[32mON\033[0m \n");
@@ -119,7 +122,8 @@ int main() {
     switch (modotransito)
     {
     case 1:
-        printf("\n Modo de transito selecionado: \033[32m01 - SAT-PE(Transito)\033[0m\n"); 
+        printf("\n Modo de transito selecionado: \033[32m01 - SAT-PE(Transito livre)\033[0m\n"); 
+        copy_wst_sat_pe();
         break;
     
     case 2:
@@ -133,26 +137,12 @@ int main() {
         switch (ganho)
         {
         case 1:
-            printf(GREEN" Ganho maximo selecionado\n"RESET);
-
-            vmax[2] = 19.8, vmax[3] = 19.0, vmax[5] = 11.6, vmax[7] = 11.6, vmax[9] = 11.3; 
-            vmin[2] = 19.4, vmin[3] = 18.6, vmin[5] = 11.2, vmin[7] = 11.2, vmin[9] = 10.9;
-            cmax[2] = 1.9, cmax[3] = 3.1, cmax[5] = 1.7, cmax[7] = 3.3, cmax[9] = 3.7;
-            cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
-            pmax[2] = 1.0, pmax[3] = 20.65, pmax[5] = 20.5, pmax[7] = 28.7, pmax[9] = 35.4; 
-            pmin[2] = 1.0, pmin[3] = 18.65, pmin[5] = 18.6, pmin[7] = 26.0, pmin[9] = 32.0;
+            range_ganho_max();
             copy_wst_sat_pe();
             break;
         
         case 2:
-            printf(GREEN" Ganho minimo selecionado\n"RESET);
-
-            vmax[2] = 19.8, vmax[3] = 19.0, vmax[5] = 11.6, vmax[7] = 11.6, vmax[9] = 11.3; 
-            vmin[2] = 19.4, vmin[3] = 18.6, vmin[5] = 11.2, vmin[7] = 11.2, vmin[9] = 10.9;
-            cmax[2] = 1.9, cmax[3] = 3.1, cmax[5] = 1.7, cmax[7] = 3.3, cmax[9] = 3.7;
-            cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
-            pmax[2] = 1.0, pmax[3] = 4.9, pmax[5] = 4.9, pmax[7] = 6.8, pmax[9] = 8.4; 
-            pmin[2] = 1.0, pmin[3] = 4.4, pmin[5] = 4.4, pmin[7] = 6.2, pmin[9] = 7.6;
+            range_ganho_min();
             copy_wst_sat_pe();
             break;
     
@@ -307,18 +297,20 @@ void peso(void){
 }
 
 void copy_wst_sat_pe(void){
-    // char fliez;
-    // printf(RED" COPIE OS ARQUIVOS DE LOG PARA O DIRETORIO !!!\n"RESET);
-    // printf(RED"\n DESEJA ABRIR O FILEZILA ? S/N: \n"RESET);
-    // scanf("%c", &fliez);
-    // if ((fliez == 'S') || (fliez == 's')){
-    //     printf(RED"\n ENTRE NO FILEZILA COM O IP, USUARIO E SENHA DO EQUIPAMENTO \n"RESET);
-    //     system("C:\\Users\\alisson.evangelista\\Documents\\ALISSON\\PROGRAMAS\\FileZillaPortable\\FileZillaPortable.exe");
-    // }
-    // system("explorer \"ARQUIVOS_SAT_PE_SB\"");
-    // system("PAUSE");
-    // system("type nul > dados.txt");
-    // system("copy \"ARQUIVOS_SAT_PE_SB\\*.wst\" dados.txt");
+    char fliez;
+    fflush(stdin);
+    printf(YELLOW" COPIE OS ARQUIVOS DE LOG PARA O DIRETORIO !!!\n"RESET);
+    printf(YELLOW" DESEJA ABRIR O FILEZILA ? S/N: "RESET);
+    scanf("%c", &fliez);
+    if ((fliez == 'S') || (fliez == 's')){
+        printf(YELLOW" ENTRE NO FILEZILA COM O IP, USUARIO E SENHA DO EQUIPAMENTO \n"RESET);
+        system("PAUSE");
+        system("C:\\Users\\alisson.evangelista\\Documents\\ALISSON\\PROGRAMAS\\FileZillaPortable\\FileZillaPortable.exe");
+    }
+    system("explorer \"ARQUIVOS_SAT_PE_SB\"");
+    system("PAUSE");
+    system("type nul > dados.txt");
+    system("copy \"ARQUIVOS_SAT_PE_SB\\*.wst\" dados.txt");
 }
 
 FILE *abrirarquivo(const char *nomeArquivo){
@@ -425,4 +417,26 @@ void imprime_resultado_terminal(void){
     printf("\n TOTAL DE TRANSITOS COLETADOS: %d", total2 + total3 + total5 + total7 + total9 + totaleixoerror);
     printf("\n TOTAL DE TRANSITOS COM ERRO: \033[31m%d\033[0m", counterror);
 
+}
+
+void range_ganho_max(void){
+    printf(GREEN" Ganho maximo selecionado\n"RESET);
+
+    vmax[2] = 19.8, vmax[3] = 19.0, vmax[5] = 11.6, vmax[7] = 11.6, vmax[9] = 11.3; 
+    vmin[2] = 19.4, vmin[3] = 18.6, vmin[5] = 11.2, vmin[7] = 11.2, vmin[9] = 10.9;
+    cmax[2] = 1.9, cmax[3] = 3.1, cmax[5] = 1.7, cmax[7] = 3.3, cmax[9] = 3.7;
+    cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
+    pmax[2] = 1.0, pmax[3] = 20.65, pmax[5] = 20.5, pmax[7] = 28.7, pmax[9] = 35.4; 
+    pmin[2] = 1.0, pmin[3] = 18.65, pmin[5] = 18.6, pmin[7] = 26.0, pmin[9] = 32.0;
+}
+
+void range_ganho_min(void){
+    printf(GREEN" Ganho minimo selecionado\n"RESET);
+
+    vmax[2] = 19.8, vmax[3] = 19.0, vmax[5] = 11.6, vmax[7] = 11.6, vmax[9] = 11.3; 
+    vmin[2] = 19.4, vmin[3] = 18.6, vmin[5] = 11.2, vmin[7] = 11.2, vmin[9] = 10.9;
+    cmax[2] = 1.9, cmax[3] = 3.1, cmax[5] = 1.7, cmax[7] = 3.3, cmax[9] = 3.7;
+    cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
+    pmax[2] = 1.0, pmax[3] = 4.9, pmax[5] = 4.9, pmax[7] = 6.8, pmax[9] = 8.4; 
+    pmin[2] = 1.0, pmin[3] = 4.4, pmin[5] = 4.4, pmin[7] = 6.2, pmin[9] = 7.6;  
 }
