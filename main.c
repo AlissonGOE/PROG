@@ -58,7 +58,7 @@ enum transito{
 // char linha[102400];  // Define um buffer para armazenar cada linha
 // char linhaanterior[102400] = "";
 const char delimitador[] = ";";
-struct veiculo veiculos[2000];
+struct veiculo veiculos[200000];
 struct deltavelo veloci[50];
 struct deltacomprimento comprim[50];
 struct deltapeso pes[50];
@@ -95,17 +95,19 @@ void velo(void);
 void compri(void);
 void peso(void);
 void copy_wst_sat_pe(void);
-FILE *abrirarquivo(const char *nomearquivo);
 void init_valores_minimos(void);
 void processa_linha_arquivo(FILE *arquivo, FILE *erros, const char *delimitador);
 void imprime_resultado_terminal(void);
 void imprime_resultado_arquivo_resultado(void);
 void range_ganho_max(void);
 void range_ganho_min(void);
+void apaga_arquivos_wst(void);
+void zera_range_simuladora(void);
+FILE *abrirarquivo(const char *nomearquivo);
 
 int main() {
     char opcao_menu;
-
+    
     FILE *arquivo = abrirarquivo("dados.txt");
     FILE *erros;
     erros = fopen("erros.txt", "w");
@@ -113,6 +115,7 @@ int main() {
     init_valores_minimos();
     do
     {
+        apaga_arquivos_wst();
         system("CLS");
 
         printf("\n PROGRAMA PARA ANALISAR ARQUIVO DE TRANSITO SAT-PE-SB\n");
@@ -131,7 +134,15 @@ int main() {
         {
         case 1:
             printf("\n Modo de transito selecionado: \033[32m01 - SAT-PE(Transito livre)\033[0m\n"); 
+            zera_range_simuladora();
             copy_wst_sat_pe();
+            processa_linha_arquivo(arquivo, erros, delimitador);
+            imprime_resultado_arquivo_resultado();
+            imprime_resultado_terminal();
+            printf(GREEN"\n Teste finalizado com sucesso!!\n"RESET);
+            fflush(stdin);
+            printf(YELLOW" DIGITE 'R' PARA RETORNAR AO MENU OU 'S' PARA SAIR !!  "RESET);
+            scanf("%c", &opcao_menu);
             break;
 
         case 2:
@@ -299,30 +310,10 @@ void peso(void){
 }
 
 void copy_wst_sat_pe(void){
-    char fliez;
-    char open_explorer;
 
-    fflush(stdin);
-    printf(YELLOW" DESEJA MANTER OS ARQUIVOS .WST PRESENTES NO DIRETORIO 'ARQUIVOS_SAT_PE_SB' ? S/N: "RESET);
-    scanf("%c", &open_explorer);
-    
-    if((open_explorer == 'n') || (open_explorer == 'N')){
-            fflush(stdin);
-            printf(YELLOW" DESEJA ABRIR O FILEZILA ? S/N: "RESET);
-            scanf("%c", &fliez);
-            if ((fliez == 'S') || (fliez == 's')){
-                printf(YELLOW"\n ENTRE NO FILEZILA COM O IP, USUARIO E SENHA DO EQUIPAMENTO \n"RESET);
-                printf(YELLOW" E COPIE OS ARQUIVOS .WST PARA DENTRO DO DIRETORIO 'ARQUIVOS_SAT_PE_SB' \n"RESET);
-                system("PAUSE");
-                system("C:\\Users\\alisson.evangelista\\Documents\\ALISSON\\PROGRAMAS\\FileZillaPortable\\FileZillaPortable.exe");
-                system("PAUSE");
-            }
-            else{
-                printf(YELLOW" SUBSTITUA OS ARQUIVOS PRESENTES NO DIRETORIO 'ARQUIVOS_SAT_PE_SB' "RESET);
-                system("explorer \"ARQUIVOS_SAT_PE_SB\"");
-                system("PAUSE");
-            }
-    }
+    printf(YELLOW" COPIE OS ARQUIVOS .WST PARA O DIRETORIO 'ARQUIVOS_SAT_PE_SB' "RESET);
+    system("explorer \"ARQUIVOS_SAT_PE_SB\"");
+    system("PAUSE");
     system("type nul > dados.txt");
     system("copy \"ARQUIVOS_SAT_PE_SB\\*.wst\" dados.txt");
 }
@@ -398,7 +389,6 @@ void processa_linha_arquivo(FILE *arquivo, FILE *erros, const char *delimitador)
             feixo = ' ';
         }
         i++; // Incrementa o índice do veículo
-
     }
 }
 
@@ -477,4 +467,18 @@ void imprime_resultado_arquivo_resultado(void){
     fprintf(resultado, "\nTOTAL DE TRANSITOS COM ERROS: %d", counterror);
 
     fclose(resultado);
+}
+
+void apaga_arquivos_wst(void){
+    system("del /q \"ARQUIVOS_SAT_PE_SB\\*.*\"");
+}
+
+void zera_range_simuladora(void){
+
+    vmax[2] = 0.0, vmax[3] = 0.0, vmax[5] = 0.0, vmax[7] = 0.0, vmax[9] = 0.0; 
+    vmin[2] = 0.0, vmin[3] = 0.0, vmin[5] = 0.0, vmin[7] = 0.0, vmin[9] = 0.0;
+    cmax[2] = 0.0, cmax[3] = 0.0, cmax[5] = 0.0, cmax[7] = 0.0, cmax[9] = 0.0;
+    cmin[2] = 0.0, cmin[3] = 0.0, cmin[5] = 0.0, cmin[7] = 0.0, cmin[9] = 0.0;
+    pmax[2] = 0.0, pmax[3] = 0.0, pmax[5] = 0.0, pmax[7] = 0.0, pmax[9] = 0.0; 
+    pmin[2] = 0.0, pmin[3] = 0.0, pmin[5] = 0.0, pmin[7] = 0.0, pmin[9] = 0.0;
 }
