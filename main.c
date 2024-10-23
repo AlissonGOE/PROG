@@ -134,7 +134,6 @@ int main() {
         {
         case 1:
             printf("\n Modo de transito selecionado: \033[32m01 - SAT-PE(Transito livre)\033[0m\n"); 
-            zera_range_simuladora();
             copy_wst_sat_pe();
             processa_linha_arquivo(arquivo, erros, delimitador);
             imprime_resultado_arquivo_resultado();
@@ -163,6 +162,7 @@ int main() {
                 imprime_resultado_arquivo_resultado();
                 imprime_resultado_terminal();
                 printf(GREEN"\n Teste finalizado com sucesso!!\n"RESET);
+                zera_range_simuladora();
                 fflush(stdin);
                 printf(YELLOW" DIGITE 'R' PARA RETORNAR AO MENU OU 'S' PARA SAIR !!  "RESET);
                 scanf("%c", &opcao_menu);
@@ -175,6 +175,7 @@ int main() {
                 imprime_resultado_arquivo_resultado();
                 imprime_resultado_terminal();
                 printf(GREEN"\n Teste finalizado com sucesso!!\n"RESET);
+                zera_range_simuladora();
                 fflush(stdin);
                 printf(YELLOW" DIGITE 'R' PARA RETORNAR AO MENU OU 'S' PARA SAIR !!  "RESET);
                 scanf("%c", &opcao_menu);
@@ -474,6 +475,8 @@ void apaga_arquivos_wst(void){
 }
 
 void zera_range_simuladora(void){
+
+    printf(GREEN" ZERANDO OS VALORES MAX/MIN\n"RESET);
 
     vmax[2] = 0.0, vmax[3] = 0.0, vmax[5] = 0.0, vmax[7] = 0.0, vmax[9] = 0.0; 
     vmin[2] = 0.0, vmin[3] = 0.0, vmin[5] = 0.0, vmin[7] = 0.0, vmin[9] = 0.0;
