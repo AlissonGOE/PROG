@@ -105,85 +105,99 @@ void range_ganho_max(void);
 void range_ganho_min(void);
 
 int main() {
-
-    system("CLS");
-
-    printf("\n PROGRAMA PARA ANALISAR ARQUIVO DE TRANSITO SAT-PE-SB\n");
-    printf(" --------------------------------------------------------------------------------04--03--02--01--\n");
-    printf(" 01 - SAT-PE(Transito livre)                                             DIP-SW: OFF OFF OFF OFF\n");                                           
-    printf(" 02 - SAT-PE(Transito variado e repetitivo)                              DIP-SW: OFF OFF OFF \033[32mON\033[0m \n");
-    printf(" 03 - SAT(Transito variado e rondomico em cada canal)                    DIP-SW: OFF OFF \033[32mON\033[0m  OFF\n");
-    printf(" 04 - SAT-PE(Transito variado e repetitivo em todos os canais)           DIP-SW: OFF OFF \033[32mON\033[0m  \033[32mON\033[0m \n");
-    printf(" 05 - Somente lacos(Transito unico/repetitivo)                           DIP-SW: OFF \033[32mON\033[0m  OFF OFF\n");
-    printf(" 06 - Somente piezos(Transito unico/repetitivo)                          DIP-SW: OFF \033[32mON\033[0m  OFF \033[32mON\033[0m \n");
-    printf(" ------------------------------------------------------------------------------------------------\n");
-    printf(" Selecione o modo de transito do arquivo: ");
-    scanf("%d", &modotransito);
-
-    switch (modotransito)
-    {
-    case 1:
-        printf("\n Modo de transito selecionado: \033[32m01 - SAT-PE(Transito livre)\033[0m\n"); 
-        copy_wst_sat_pe();
-        break;
-    
-    case 2:
-        printf("\n Modo de transito selecionado: \033[32m02 - SAT-PE(Transito variado e repetitivo)\033[0m\n");
-        printf(" -------------------\n");
-        printf(" 01 - Ganho MAXIMO\n");
-        printf(" 02 - Ganho MINIMO\n");
-        printf(" -------------------\n");
-        printf(" Selecione o ganho dos piezos de pesagem: ");
-        scanf("%d", &ganho);
-        switch (ganho)
-        {
-        case 1:
-            range_ganho_max();
-            copy_wst_sat_pe();
-            break;
-        
-        case 2:
-            range_ganho_min();
-            copy_wst_sat_pe();
-            break;
-    
-        }
-        break;
-
-    case 3:
-        printf("\n Modo de transito selecionado: \033[32m03 - SAT(Transito variado e rondomico em cada canal)\033[0m\n");
-        break;
-
-    case 4:
-        printf("\n Modo de transito selecionado: \033[32m04 - SAT-PE(Transito variado e repetitivo em todos os canais)\033[0m\n");
-        break;
-
-    case 5:
-        printf("\n Modo de transito selecionado: \033[32m05 - Somente lacos(Transito unico/repetitivo)\033[0m\n");
-        break;
-
-    case 6:
-        printf("\n Modo de transito selecionado: \033[32m06 - Somente piezos(Transito unico/repetitivo)\033[0m\n");
-        break;
-
-    default:
-        printf(RED"Digite uma opcao valida!!!"RESET);
-        break;
-    }
+    char opcao_menu;
 
     FILE *arquivo = abrirarquivo("dados.txt");
     FILE *erros = abrirarquivo("erros.txt");
-    
     init_valores_minimos();
-    processa_linha_arquivo(arquivo, erros, delimitador);
+    do
+    {
+        system("CLS");
 
-    imprime_resultado_arquivo_resultado();
-    imprime_resultado_terminal();
+        printf("\n PROGRAMA PARA ANALISAR ARQUIVO DE TRANSITO SAT-PE-SB\n");
+        printf(" --------------------------------------------------------------------------------04--03--02--01--\n");
+        printf(" 01 - SAT-PE(Transito livre)                                             DIP-SW: OFF OFF OFF OFF\n");                                           
+        printf(" 02 - SAT-PE(Transito variado e repetitivo)                              DIP-SW: OFF OFF OFF \033[32mON\033[0m \n");
+        printf(" 03 - SAT(Transito variado e rondomico em cada canal)                    DIP-SW: OFF OFF \033[32mON\033[0m  OFF\n");
+        printf(" 04 - SAT-PE(Transito variado e repetitivo em todos os canais)           DIP-SW: OFF OFF \033[32mON\033[0m  \033[32mON\033[0m \n");
+        printf(" 05 - Somente lacos(Transito unico/repetitivo)                           DIP-SW: OFF \033[32mON\033[0m  OFF OFF\n");
+        printf(" 06 - Somente piezos(Transito unico/repetitivo)                          DIP-SW: OFF \033[32mON\033[0m  OFF \033[32mON\033[0m \n");
+        printf(" ------------------------------------------------------------------------------------------------\n");
+        printf(" Selecione o modo de transito do arquivo: ");
+        scanf("%d", &modotransito);
+
+        switch (modotransito)
+        {
+        case 1:
+            printf("\n Modo de transito selecionado: \033[32m01 - SAT-PE(Transito livre)\033[0m\n"); 
+            copy_wst_sat_pe();
+            break;
+
+        case 2:
+            printf("\n Modo de transito selecionado: \033[32m02 - SAT-PE(Transito variado e repetitivo)\033[0m\n");
+            printf(" -------------------\n");
+            printf(" 01 - Ganho MAXIMO\n");
+            printf(" 02 - Ganho MINIMO\n");
+            printf(" -------------------\n");
+            printf(" Selecione o ganho dos piezos de pesagem: ");
+            scanf("%d", &ganho);
+            switch (ganho)
+            {
+            case 1:
+                
+                range_ganho_max();
+                copy_wst_sat_pe();
+                processa_linha_arquivo(arquivo, erros, delimitador);
+                imprime_resultado_arquivo_resultado();
+                imprime_resultado_terminal();
+                printf(GREEN"\n\n Teste finalizado com sucesso!!\n\n"RESET);
+                fflush(stdin);
+                printf(YELLOW"\n Digite 's' para retornar ao menu ou 'n' para sair :  "RESET);
+                scanf("%c", &opcao_menu);
+                break;
+
+            case 2:
+                range_ganho_min();
+                copy_wst_sat_pe();
+                processa_linha_arquivo(arquivo, erros, delimitador);
+                imprime_resultado_arquivo_resultado();
+                imprime_resultado_terminal();
+                printf(GREEN"\n\n Teste finalizado com sucesso!!\n\n"RESET);
+                fflush(stdin);
+                printf(YELLOW"\n Digite 's' para retornar ao menu ou 'n' para sair :  "RESET);
+                scanf("%c", &opcao_menu);
+                break;
+
+            }
+            break;
+
+        case 3:
+            printf("\n Modo de transito selecionado: \033[32m03 - SAT(Transito variado e rondomico em cada canal)\033[0m\n");
+            break;
+
+        case 4:
+            printf("\n Modo de transito selecionado: \033[32m04 - SAT-PE(Transito variado e repetitivo em todos os canais)\033[0m\n");
+            break;
+
+        case 5:
+            printf("\n Modo de transito selecionado: \033[32m05 - Somente lacos(Transito unico/repetitivo)\033[0m\n");
+            break;
+
+        case 6:
+            printf("\n Modo de transito selecionado: \033[32m06 - Somente piezos(Transito unico/repetitivo)\033[0m\n");
+            break;
+
+        default:
+            printf(RED"Digite uma opcao valida!!!"RESET);
+            break;
+        }
+    }
+    while ((opcao_menu == 'S') || (opcao_menu == 's'));
     
     fclose(arquivo);
     fclose(erros);
 
-    printf(GREEN"\n\n Teste finalizado com sucesso!!\n\n"RESET);
+    printf(GREEN"\n\n Programa finalizado!!\n\n"RESET);
     system("PAUSE");
     return 0;
 }
