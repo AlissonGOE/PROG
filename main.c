@@ -356,12 +356,6 @@ void registrarErro(FILE *erros, const char *linha, const char *linhaanterior, ch
     if (erros != NULL) { // Verifica se o arquivo está aberto
         fprintf(erros, "ERROR(%c%c%c%c) - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m - PESO: %.2f PBT\n", feixo, fvelo, fcomp, fpeso, veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].peso);  
         fprintf(erros, "LINHA: %d - %s\n\n", linha, linhaanterior);
-        set = 0;
-        counterror++;
-        fvelo = ' ';
-        fcomp = ' ';
-        fpeso = ' ';
-        feixo = ' ';
     } else {
         printf("Erro: arquivo não está aberto.\n");
     }
@@ -399,6 +393,12 @@ void processa_linha_arquivo(FILE *arquivo, FILE *erros, const char *delimitador)
 
         if (set == 1) { // Verifica se houve erro
             registrarErro(erros, linha, linhaanterior, feixo, fvelo, fcomp, fpeso, veiculos, i);
+            set = 0;
+            counterror++;
+            fvelo = ' ';
+            fcomp = ' ';
+            fpeso = ' ';
+            feixo = ' ';
         }
         i++; // Incrementa o índice do veículo
 
