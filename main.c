@@ -54,8 +54,8 @@ enum transito{
     sat,
 };
 
-char linha[102400];  // Define um buffer para armazenar cada linha
-char linhaanterior[102400] = "";
+// char linha[102400];  // Define um buffer para armazenar cada linha
+// char linhaanterior[102400] = "";
 const char delimitador[] = ";";
 struct veiculo veiculos[2000];
 struct deltavelo veloci[50];
@@ -93,7 +93,11 @@ float pmin[] = {0.0, 0.0, 1.0, 4.0, 0.0, 3.0, 0.0, 5.2, 0.0, 6.5};
 void velo(void);
 void compri(void);
 void peso(void);
-void copywstsatpe(void);
+void copy_wst_sat_pe(void);
+FILE *abrirarquivo(const char *nomearquivo);
+void init_valores_minimos(void);
+void registrarErro(FILE *erros, const char *linha, const char *linhaanterior, char feixo, char fvelo, char fcomp, char fpeso, struct veiculo veiculos[], int i);
+void processa_linha_arquivo(FILE *arquivo, FILE *erros, const char *delimitador);
 
 int main() {
 
@@ -136,7 +140,7 @@ int main() {
             cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
             pmax[2] = 1.0, pmax[3] = 20.65, pmax[5] = 20.5, pmax[7] = 28.7, pmax[9] = 35.4; 
             pmin[2] = 1.0, pmin[3] = 18.65, pmin[5] = 18.6, pmin[7] = 26.0, pmin[9] = 32.0;
-            copywstsatpe();
+            copy_wst_sat_pe();
             break;
         
         case 2:
@@ -148,7 +152,7 @@ int main() {
             cmin[2] = 1.5, cmin[3] = 2.7, cmin[5] = 1.3, cmin[7] = 2.9, cmin[9] = 3.3;
             pmax[2] = 1.0, pmax[3] = 4.9, pmax[5] = 4.9, pmax[7] = 6.8, pmax[9] = 8.4; 
             pmin[2] = 1.0, pmin[3] = 4.4, pmin[5] = 4.4, pmin[7] = 6.2, pmin[9] = 7.6;
-            copywstsatpe();
+            copy_wst_sat_pe();
             break;
     
         }
@@ -175,85 +179,12 @@ int main() {
         break;
     }
 
-    FILE *arquivo = fopen("dados.txt", "r");
-    if (arquivo == NULL) {
-        printf(" Erro ao abrir o arquivo.\n");
-        return 1;
-    } else {
-        printf("\n Arquivo dados.txt aberto com sucesso!!\n");
-    }
-    FILE *resultado = fopen("resultado.txt", "w");
-    if (resultado == NULL) {
-        printf(" Erro ao abrir o arquivo de resultado.\n");
-        fclose(arquivo);
-        return 1;
-    } else {
-        printf(" Arquivo resultado.txt aberto com sucesso!!\n");
-    }
-     FILE *erros = fopen("erros.txt", "w");
-    if (erros == NULL) {
-        printf(" Erro ao abrir o arquivo.\n");
-        return 1;
-    } else {
-        printf(" Arquivo erros.txt aberto com sucesso!!\n");
-    }
+    FILE *arquivo = abrirarquivo("dados.txt");
+    FILE *resultado = abrirarquivo("resultado.txt");
+    FILE *erros = abrirarquivo("erros.txt");
     
-    // Inicializar os valores mínimos com um valor alto
-    veloci[2].eixovmin = 200.0;
-    veloci[3].eixovmin = 200.0;
-    veloci[5].eixovmin = 200.0;
-    veloci[7].eixovmin = 200.0;
-    veloci[9].eixovmin = 200.0;
-    
-    comprim[2].eixocmin = 200.0;
-    comprim[3].eixocmin = 200.0;
-    comprim[5].eixocmin = 200.0;
-    comprim[7].eixocmin = 200.0;
-    comprim[9].eixocmin = 200.0;
-
-    pes[2].eixopmin = 200.0;
-    pes[3].eixopmin = 200.0;
-    pes[5].eixopmin = 200.0;
-    pes[7].eixopmin = 200.0;
-    pes[9].eixopmin = 200.0;
-
-    while (fgets(linha, sizeof(linha), arquivo)) {
-    linha[strcspn(linha, "\n")] = 0;
-    strcpy(linhaanterior, linha);
-
-    char *campo = strtok(linha, delimitador);
-    int coluna = 0;
-
-        while (campo != NULL) {
-            if (coluna == 3) {
-                veiculos[i].velocidade = strtof(campo, NULL);
-            } else if (coluna == 4) {
-                veiculos[i].comprimento = strtof(campo, NULL);
-            } else if (coluna == 6) {
-                veiculos[i].eixos = atoi(campo);
-            } else if (coluna == 10) {
-                veiculos[i].peso = strtof(campo, NULL);
-            }
-            campo = strtok(NULL, delimitador);
-            coluna++;
-        }
-        velo();
-        compri();
-        peso();
-
-        if(set == 1){
-            fprintf(erros, "ERROR(%c%c%c%c) - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m - PESO: %.2f PBT\n", feixo, fvelo, fcomp, fpeso, veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].peso);
-            fprintf(erros, "LINHA: %d - %s\n\n",i , linhaanterior);
-            set = 0;
-            counterror++;
-            fvelo = ' ';
-            fcomp = ' ';
-            fpeso = ' ';
-            feixo = ' ';
-        }
-        i++; 
-        
-    }
+    init_valores_minimos();
+    processa_linha_arquivo(arquivo, erros, delimitador);
 
     fprintf(resultado, "\n2 EIXOS -  VELOCIDADE MAX: %.1f Km/h - VELOCIDADE MIN:  %.1f Km/h - FALHA V-MAX: %d - FALHA V-MIN: %d - TOTAL DE VEICULOS: %d\n", veloci[2].eixovmax, veloci[2].eixovmin, erro[2].exvmaxfalha, erro[2].exvminfalha, total2);
     fprintf(resultado, "2 EIXOS -  COMPRIMENTO MAX:    %.1f m - COMPRIMENTO MIN:     %.1f m - FALHA C-MAX: %d - FALHA C-MIN: %d\n", comprim[2].eixocmax, comprim[2].eixocmin, erro[2].excmaxfalha, erro[2].excminfalha);
@@ -391,18 +322,101 @@ void peso(void){
     }
 }
 
-void copywstsatpe(void){
-    char fliez;
-    printf(RED" COPIE OS ARQUIVOS DE LOG PARA O DIRETORIO !!!\n"RESET);
-    printf(RED"\n DESEJA ABRIR O FILEZILA ? S/N: \n"RESET);
-    scanf("%c", &fliez);
-    if ((fliez == 'S') || (fliez == 's')){
-        printf(RED"\n ENTRE NO FILEZILA COM O IP, USUARIO E SENHA DO EQUIPAMENTO \n"RESET);
-        system("C:\\Users\\alisson.evangelista\\Documents\\ALISSON\\PROGRAMAS\\FileZillaPortable\\FileZillaPortable.exe");
-    }
-    system("explorer \"ARQUIVOS_SAT_PE_SB\"");
-    system("PAUSE");
-    system("type nul > dados.txt");
-    system("copy \"ARQUIVOS_SAT_PE_SB\\*.wst\" dados.txt");
+void copy_wst_sat_pe(void){
+    // char fliez;
+    // printf(RED" COPIE OS ARQUIVOS DE LOG PARA O DIRETORIO !!!\n"RESET);
+    // printf(RED"\n DESEJA ABRIR O FILEZILA ? S/N: \n"RESET);
+    // scanf("%c", &fliez);
+    // if ((fliez == 'S') || (fliez == 's')){
+    //     printf(RED"\n ENTRE NO FILEZILA COM O IP, USUARIO E SENHA DO EQUIPAMENTO \n"RESET);
+    //     system("C:\\Users\\alisson.evangelista\\Documents\\ALISSON\\PROGRAMAS\\FileZillaPortable\\FileZillaPortable.exe");
+    // }
+    // system("explorer \"ARQUIVOS_SAT_PE_SB\"");
+    // system("PAUSE");
+    // system("type nul > dados.txt");
+    // system("copy \"ARQUIVOS_SAT_PE_SB\\*.wst\" dados.txt");
 }
 
+FILE *abrirarquivo(const char *nomeArquivo){
+        FILE *arquivo = fopen(nomeArquivo, "r");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo %s.\n", nomeArquivo);
+    } else {
+        printf("\nArquivo %s aberto com sucesso!\n", nomeArquivo);
+    }
+    return arquivo;
+}
+
+void init_valores_minimos(void){
+    // Inicializar os valores mínimos com um valor alto
+    veloci[2].eixovmin = 200.0;
+    veloci[3].eixovmin = 200.0;
+    veloci[5].eixovmin = 200.0;
+    veloci[7].eixovmin = 200.0;
+    veloci[9].eixovmin = 200.0;
+    
+    comprim[2].eixocmin = 200.0;
+    comprim[3].eixocmin = 200.0;
+    comprim[5].eixocmin = 200.0;
+    comprim[7].eixocmin = 200.0;
+    comprim[9].eixocmin = 200.0;
+
+    pes[2].eixopmin = 200.0;
+    pes[3].eixopmin = 200.0;
+    pes[5].eixopmin = 200.0;
+    pes[7].eixopmin = 200.0;
+    pes[9].eixopmin = 200.0;
+}
+
+void registrarErro(FILE *erros, const char *linha, const char *linhaanterior, char feixo, char fvelo, char fcomp, char fpeso, struct veiculo veiculos[], int i) {
+    if (erros != NULL) { // Verifica se o arquivo está aberto
+        fprintf(erros, "ERROR(%c%c%c%c) - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m - PESO: %.2f PBT\n", feixo, fvelo, fcomp, fpeso, veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].peso);  
+        fprintf(erros, "LINHA: %d - %s\n\n", linha, linhaanterior);
+        set = 0;
+        counterror++;
+        fvelo = ' ';
+        fcomp = ' ';
+        fpeso = ' ';
+        feixo = ' ';
+    } else {
+        printf("Erro: arquivo não está aberto.\n");
+    }
+}
+
+void processa_linha_arquivo(FILE *arquivo, FILE *erros, const char *delimitador) {
+    char linha[102400]; // Buffer para armazenar a linha lida
+    char linhaanterior[102400]; // Buffer para armazenar a linha anterior
+    int set = 0; // Variável para verificar se houve erro
+
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        linha[strcspn(linha, "\n")] = 0; // Remove a nova linha
+        strcpy(linhaanterior, linha); // Armazena a linha anterior
+
+        char *campo = strtok(linha, delimitador); // Divide a linha em campos
+        int coluna = 0;
+
+        while (campo != NULL) {
+            if (coluna == 3) {
+                veiculos[i].velocidade = strtof(campo, NULL);
+            } else if (coluna == 4) {
+                veiculos[i].comprimento = strtof(campo, NULL);
+            } else if (coluna == 6) {
+                veiculos[i].eixos = atoi(campo);
+            } else if (coluna == 10) {
+                veiculos[i].peso = strtof(campo, NULL);
+            }
+            campo = strtok(NULL, delimitador); // Passa para o próximo campo
+            coluna++;
+        }
+
+        velo(); // Chamada para a função de validação de velocidade
+        compri(); // Chamada para a função de validação de comprimento
+        peso(); // Chamada para a função de validação de peso
+
+        if (set == 1) { // Verifica se houve erro
+            registrarErro(erros, linha, linhaanterior, feixo, fvelo, fcomp, fpeso, veiculos, i);
+        }
+        i++; // Incrementa o índice do veículo
+
+    }
+}
