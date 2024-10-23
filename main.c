@@ -63,7 +63,7 @@ struct deltavelo veloci[50];
 struct deltacomprimento comprim[50];
 struct deltapeso pes[50];
 struct falha erro[50];
-enum printerror set;
+int set = 0;
 enum transito modotransito;
 
 int ganho = 0;
@@ -97,7 +97,6 @@ void peso(void);
 void copy_wst_sat_pe(void);
 FILE *abrirarquivo(const char *nomearquivo);
 void init_valores_minimos(void);
-void registrarErro(FILE *erros, const char *linha, const char *linhaanterior, char feixo, char fvelo, char fcomp, char fpeso, struct veiculo veiculos[], int i);
 void processa_linha_arquivo(FILE *arquivo, FILE *erros, const char *delimitador);
 void imprime_resultado_terminal(void);
 void imprime_resultado_arquivo_resultado(void);
@@ -108,7 +107,9 @@ int main() {
     char opcao_menu;
 
     FILE *arquivo = abrirarquivo("dados.txt");
-    FILE *erros = abrirarquivo("erros.txt");
+    FILE *erros;
+    erros = fopen("erros.txt", "w");
+
     init_valores_minimos();
     do
     {
@@ -122,10 +123,10 @@ int main() {
         printf(" 04 - SAT-PE(Transito variado e repetitivo em todos os canais)           DIP-SW: OFF OFF \033[32mON\033[0m  \033[32mON\033[0m \n");
         printf(" 05 - Somente lacos(Transito unico/repetitivo)                           DIP-SW: OFF \033[32mON\033[0m  OFF OFF\n");
         printf(" 06 - Somente piezos(Transito unico/repetitivo)                          DIP-SW: OFF \033[32mON\033[0m  OFF \033[32mON\033[0m \n");
+        printf(RED" 07 - Finalizar programa\n"RESET);
         printf(" ------------------------------------------------------------------------------------------------\n");
         printf(" Selecione o modo de transito do arquivo: ");
         scanf("%d", &modotransito);
-
         switch (modotransito)
         {
         case 1:
@@ -150,9 +151,9 @@ int main() {
                 processa_linha_arquivo(arquivo, erros, delimitador);
                 imprime_resultado_arquivo_resultado();
                 imprime_resultado_terminal();
-                printf(GREEN"\n\n Teste finalizado com sucesso!!\n\n"RESET);
+                printf(GREEN"\n Teste finalizado com sucesso!!\n"RESET);
                 fflush(stdin);
-                printf(YELLOW"\n Digite 's' para retornar ao menu ou 'n' para sair :  "RESET);
+                printf(YELLOW" DIGITE 'R' PARA RETORNAR AO MENU OU 'S' PARA SAIR !!  "RESET);
                 scanf("%c", &opcao_menu);
                 break;
 
@@ -162,9 +163,9 @@ int main() {
                 processa_linha_arquivo(arquivo, erros, delimitador);
                 imprime_resultado_arquivo_resultado();
                 imprime_resultado_terminal();
-                printf(GREEN"\n\n Teste finalizado com sucesso!!\n\n"RESET);
+                printf(GREEN"\n Teste finalizado com sucesso!!\n"RESET);
                 fflush(stdin);
-                printf(YELLOW"\n Digite 's' para retornar ao menu ou 'n' para sair :  "RESET);
+                printf(YELLOW" DIGITE 'R' PARA RETORNAR AO MENU OU 'S' PARA SAIR !!  "RESET);
                 scanf("%c", &opcao_menu);
                 break;
 
@@ -187,17 +188,22 @@ int main() {
             printf("\n Modo de transito selecionado: \033[32m06 - Somente piezos(Transito unico/repetitivo)\033[0m\n");
             break;
 
+        case 7:
+            //finaliza o programa
+            opcao_menu = 'n';
+            break;
+
         default:
             printf(RED"Digite uma opcao valida!!!"RESET);
             break;
         }
     }
-    while ((opcao_menu == 'S') || (opcao_menu == 's'));
+    while ((opcao_menu == 'R') || (opcao_menu == 'r'));
     
     fclose(arquivo);
     fclose(erros);
 
-    printf(GREEN"\n\n Programa finalizado!!\n\n"RESET);
+    printf(GREEN" Programa finalizado!!\n"RESET);
     system("PAUSE");
     return 0;
 }
@@ -294,23 +300,35 @@ void peso(void){
 
 void copy_wst_sat_pe(void){
     char fliez;
+    char open_explorer;
+
     fflush(stdin);
-    printf(YELLOW" COPIE OS ARQUIVOS DE LOG PARA O DIRETORIO !!!\n"RESET);
-    printf(YELLOW" DESEJA ABRIR O FILEZILA ? S/N: "RESET);
-    scanf("%c", &fliez);
-    if ((fliez == 'S') || (fliez == 's')){
-        printf(YELLOW" ENTRE NO FILEZILA COM O IP, USUARIO E SENHA DO EQUIPAMENTO \n"RESET);
-        system("PAUSE");
-        system("C:\\Users\\alisson.evangelista\\Documents\\ALISSON\\PROGRAMAS\\FileZillaPortable\\FileZillaPortable.exe");
+    printf(YELLOW" DESEJA MANTER OS ARQUIVOS .WST PRESENTES NO DIRETORIO 'ARQUIVOS_SAT_PE_SB' ? S/N: "RESET);
+    scanf("%c", &open_explorer);
+    
+    if((open_explorer == 'n') || (open_explorer == 'N')){
+            fflush(stdin);
+            printf(YELLOW" DESEJA ABRIR O FILEZILA ? S/N: "RESET);
+            scanf("%c", &fliez);
+            if ((fliez == 'S') || (fliez == 's')){
+                printf(YELLOW"\n ENTRE NO FILEZILA COM O IP, USUARIO E SENHA DO EQUIPAMENTO \n"RESET);
+                printf(YELLOW" E COPIE OS ARQUIVOS .WST PARA DENTRO DO DIRETORIO 'ARQUIVOS_SAT_PE_SB' \n"RESET);
+                system("PAUSE");
+                system("C:\\Users\\alisson.evangelista\\Documents\\ALISSON\\PROGRAMAS\\FileZillaPortable\\FileZillaPortable.exe");
+                system("PAUSE");
+            }
+            else{
+                printf(YELLOW" SUBSTITUA OS ARQUIVOS PRESENTES NO DIRETORIO 'ARQUIVOS_SAT_PE_SB' "RESET);
+                system("explorer \"ARQUIVOS_SAT_PE_SB\"");
+                system("PAUSE");
+            }
     }
-    system("explorer \"ARQUIVOS_SAT_PE_SB\"");
-    system("PAUSE");
     system("type nul > dados.txt");
     system("copy \"ARQUIVOS_SAT_PE_SB\\*.wst\" dados.txt");
 }
 
 FILE *abrirarquivo(const char *nomeArquivo){
-        FILE *arquivo = fopen(nomeArquivo, "rw");
+        FILE *arquivo = fopen(nomeArquivo, "r");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo %s.\n", nomeArquivo);
     } else {
@@ -340,19 +358,9 @@ void init_valores_minimos(void){
     pes[9].eixopmin = 200.0;
 }
 
-void registrarErro(FILE *erros, const char *linha, const char *linhaanterior, char feixo, char fvelo, char fcomp, char fpeso, struct veiculo veiculos[], int i) {
-    if (erros != NULL) { // Verifica se o arquivo está aberto
-        fprintf(erros, "ERROR(%c%c%c%c) - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m - PESO: %.2f PBT\n", feixo, fvelo, fcomp, fpeso, veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].peso);  
-        fprintf(erros, "LINHA: %d - %s\n\n", linha, linhaanterior);
-    } else {
-        printf("Erro: arquivo não está aberto.\n");
-    }
-}
-
 void processa_linha_arquivo(FILE *arquivo, FILE *erros, const char *delimitador) {
     char linha[102400]; // Buffer para armazenar a linha lida
     char linhaanterior[102400]; // Buffer para armazenar a linha anterior
-    int set = 0; // Variável para verificar se houve erro
 
     while (fgets(linha, sizeof(linha), arquivo)) {
         linha[strcspn(linha, "\n")] = 0; // Remove a nova linha
@@ -380,7 +388,8 @@ void processa_linha_arquivo(FILE *arquivo, FILE *erros, const char *delimitador)
         peso(); // Chamada para a função de validação de peso
 
         if (set == 1) { // Verifica se houve erro
-            registrarErro(erros, linha, linhaanterior, feixo, fvelo, fcomp, fpeso, veiculos, i);
+            fprintf(erros, " ERROR(%c%c%c%c) - %d EIXOS - VELOCIDADE: %.1f Km/h - COMPRIMENTO: %.1f m - PESO: %.2f PBT\n", feixo, fvelo, fcomp, fpeso, veiculos[i].eixos, veiculos[i].velocidade, veiculos[i].comprimento, veiculos[i].peso);  
+            fprintf(erros, " LINHA: %d - %s\n\n", linha, linhaanterior);
             set = 0;
             counterror++;
             fvelo = ' ';
